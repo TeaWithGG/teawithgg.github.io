@@ -1,2 +1,2 @@
-# Gungunarora
+# gungunarora
 This is my professional portfolio 
