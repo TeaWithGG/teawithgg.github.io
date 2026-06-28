@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gungun Arora — Journalist · Cinematographer · Visual Storyteller</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0F0E0E;
+            --dark-brown: #1A1410;
+            --parchment: #F5EDD6;
+            --gold: #C8973A;
+            --terracotta: #A0522D;
+            --crimson: #8B1A1A;
+            --olive: #1E1E14;
+            --gold-light: #D4A853;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--parchment);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            overflow-x: hidden;
+        }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--black);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 24px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(15,14,14,0.95), transparent);
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--parchment);
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            transition: opacity 0.3s, color 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            color: var(--gold);
+        }
+
+        /* HERO */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 70% 50%, rgba(200,151,58,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(160,82,45,0.06) 0%, transparent 50%),
+                var(--black);
+        }
+
+        .hero-line {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin-bottom: 32px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(48px, 8vw, 96px);
+            font-weight: 300;
+            line-height: 1.1;
+            color: var(--parchment);
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-tagline em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .hero-sub {
+            margin-top: 32px;
+            font-size: 13px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--terracotta);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-buttons {
+            margin-top: 56px;
+            display: flex;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 16px 40px;
+            background: var(--gold);
+            color: var(--black);
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            padding: 16px 40px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(200,151,58,0.1);
+            transform: translateY(-2px);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 60px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            z-index: 1;
+        }
+
+        .hero-scroll span {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.4;
+        }
+
+        .scroll-line {
+            width: 40px;
+            height: 1px;
+            background: var(--parchment);
+            opacity: 0.4;
+        }
+
+        /* SECTIONS GENERAL */
+        section {
+            padding: 120px 60px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .section-label::before {
+            content: '';
+            display: inline-block;
+            width: 30px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 60px;
+            max-width: 700px;
+        }
+
+        /* ABOUT */
+        #about {
+            background: var(--dark-brown);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .about-image-container {
+            position: relative;
+        }
+
+        .about-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            object-position: top;
+            filter: sepia(20%) contrast(110%);
+        }
+
+        .about-image-placeholder {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: var(--olive);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            opacity: 0.5;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        .about-image-frame {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: -20px;
+            bottom: -20px;
+            border: 1px solid var(--gold);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .about-content {
+            padding-top: 60px;
+        }
+
+        .about-text {
+            font-size: 16px;
+            line-height: 1.9;
+            opacity: 0.85;
+            margin-bottom: 24px;
+        }
+
+        .about-text em {
+            color: var(--gold);
+            font-style: italic;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 56px;
+            padding-top: 56px;
+            border-top: 1px solid rgba(200,151,58,0.2);
+        }
+
+        .stat-item {}
+
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            font-weight: 300;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            letter-spacing: 1px;
+            opacity: 0.6;
+            margin-top: 8px;
+        }
+
+        /* WHAT I DO */
+        #what-i-do {
+            background: var(--black);
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: rgba(200,151,58,0.1);
+        }
+
+        .pillar {
+            background: var(--black);
+            padding: 48px 40px;
+            transition: background 0.4s;
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pillar::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.4s;
+        }
+
+        .pillar:hover {
+            background: var(--olive);
+        }
+
+        .pillar:hover::before {
+            width: 100%;
+        }
+
+        .pillar-icon {
+            font-size: 32px;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .pillar-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .pillar-desc {
+            font-size: 14px;
+            line-height: 1.8;
+            opacity: 0.7;
+            margin-bottom: 24px;
+        }
+
+        .pillar-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            font-size: 11px;
+            letter-spacing: 1px;
+            padding: 4px 12px;
+            border: 1px solid rgba(200,151,58,0.3);
+            color: var(--gold);
+            opacity: 0.7;
+        }
+
+        /* EXPERIENCE */
+        #experience {
+            background: var(--dark-brown);
+        }
+
+        .experience-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .exp-item {
+            background: var(--olive);
+            padding: 56px 60px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: start;
+            transition: background 0.3s;
+        }
+
+        .exp-item:hover {
+            background: #252515;
+        }
+
+        .exp-meta {}
+
+        .exp-org {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .exp-role {
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--terracotta);
+            margin-bottom: 8px;
+        }
+
+        .exp-date {
+            font-size: 12px;
+            opacity: 0.4;
+            letter-spacing: 1px;
+        }
+
+        .exp-desc {
+            font-size: 15px;
+            line-height: 1.9;
+            opacity: 0.8;
+        }
+
+        .exp-desc p {
+            margin-bottom: 16px;
+        }
+
+        .exp-highlight {
+            margin-top: 24px;
+            padding: 20px 24px;
+            border-left: 2px solid var(--gold);
+            background: rgba(200,151,58,0.05);
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 18px;
+            color: var(--gold-light);
+            opacity: 0.9;
+        }
+
+        /* FEATURED WORKS */
+        #works {
+            background: var(--black);
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+        }
+
+        .work-item {
+            background: var(--olive);
+            padding: 56px 48px;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s;
+        }
+
+        .work-item:hover {
+            background: #252515;
+        }
+
+        .work-item.featured {
+            grid-column: span 2;
+            padding: 0;
+        }
+
+        .work-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 80px;
+            font-weight: 300;
+            color: var(--gold);
+            opacity: 0.1;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            line-height: 1;
+        }
+
+        .work-type {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--terracotta);
+            margin-bottom: 16px;
+        }
+
+        .work-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 36px;
+            font-weight: 600;
+            color: var(--parchment);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .work-desc {
+            font-size: 14px;
+            line-height: 1.9;
+            opacity: 0.75;
+            margin-bottom: 28px;
+        }
+
+        .work-roles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        .role-tag {
+            font-size: 11px;
+            letter-spacing: 1px;
+            padding: 6px 14px;
+            background: rgba(200,151,58,0.1);
+            color: var(--gold);
+            border: 1px solid rgba(200,151,58,0.2);
+        }
+
+        .work-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: gap 0.3s;
+        }
+
+        .work-link:hover {
+            gap: 16px;
+        }
+
+        .video-container {
+            width: 100%;
+            aspect-ratio: 16/9;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .featured-info {
+            padding: 48px;
+        }
+
+        /* ONLINE PRESENCE */
+        #online {
+            background: var(--dark-brown);
+        }
+
+        .online-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        .online-item {
+            background: var(--olive);
+            padding: 48px 40px;
+            text-decoration: none;
+            color: var(--parchment);
+            display: block;
+            transition: background 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .online-item::after {
+            content: '↗';
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            color: var(--gold);
+            font-size: 20px;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .online-item:hover {
+            background: #252515;
+        }
+
+        .online-item:hover::after {
+            opacity: 1;
+            transform: translate(2px, -2px);
+        }
+
+        .online-platform {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--terracotta);
+            margin-bottom: 16px;
+        }
+
+        .online-handle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .online-desc {
+            font-size: 14px;
+            line-height: 1.7;
+            opacity: 0.65;
+        }
+
+        /* AWARDS */
+        #awards {
+            background: var(--black);
+        }
+
+        .awards-header-stats {
+            display: flex;
+            gap: 60px;
+            margin-bottom: 80px;
+            padding-bottom: 60px;
+            border-bottom: 1px solid rgba(200,151,58,0.15);
+        }
+
+        .header-stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 64px;
+            font-weight: 300;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .header-stat-label {
+            font-size: 12px;
+            letter-spacing: 1px;
+            opacity: 0.5;
+            margin-top: 8px;
+        }
+
+        .awards-categories {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+        }
+
+        .award-category-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            color: var(--gold);
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(200,151,58,0.2);
+        }
+
+        .award-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .award-list li {
+            font-size: 14px;
+            line-height: 1.7;
+            opacity: 0.75;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .award-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            opacity: 0.6;
+        }
+
+        .award-prize {
+            display: inline-block;
+            font-size: 11px;
+            letter-spacing: 1px;
+            padding: 2px 8px;
+            background: rgba(200,151,58,0.1);
+            color: var(--gold);
+            margin-bottom: 4px;
+        }
+
+        /* SPEAKING */
+        #speaking {
+            background: var(--dark-brown);
+        }
+
+        .speaking-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .speaking-intro {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--parchment);
+            margin-bottom: 40px;
+        }
+
+        .speaking-intro em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .speaking-body {
+            font-size: 15px;
+            line-height: 1.9;
+            opacity: 0.75;
+        }
+
+        .topics-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .topic-item {
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(200,151,58,0.15);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            color: var(--parchment);
+            transition: color 0.3s;
+            cursor: default;
+        }
+
+        .topic-item:hover {
+            color: var(--gold);
+        }
+
+        .topic-number {
+            font-size: 13px;
+            color: var(--gold);
+            opacity: 0.5;
+            min-width: 30px;
+        }
+
+        /* CONTACT */
+        #contact {
+            background: var(--black);
+            text-align: center;
+            padding: 160px 60px;
+        }
+
+        .contact-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(36px, 5vw, 72px);
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-tagline em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .contact-sub {
+            font-size: 15px;
+            opacity: 0.6;
+            margin-bottom: 60px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .contact-email {
+            display: inline-block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            color: var(--gold);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(200,151,58,0.3);
+            padding-bottom: 8px;
+            margin-bottom: 60px;
+            transition: border-color 0.3s;
+        }
+
+        .contact-email:hover {
+            border-color: var(--gold);
+        }
+
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-bottom: 80px;
+            flex-wrap: wrap;
+        }
+
+        .contact-detail {
+            text-align: center;
+        }
+
+        .contact-detail-label {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            opacity: 0.6;
+            margin-bottom: 8px;
+        }
+
+        .contact-detail-value {
+            font-size: 15px;
+            opacity: 0.8;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 32px 60px;
+            border-top: 1px solid rgba(200,151,58,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--black);
+        }
+
+        .footer-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            color: var(--gold);
+            letter-spacing: 2px;
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            opacity: 0.3;
+            letter-spacing: 1px;
+        }
+
+        /* DIVIDER */
+        .gold-divider {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 40px 0;
+            opacity: 0.4;
+        }
+
+        /* FADE IN ANIMATION */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px 24px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 80px 24px;
+            }
+
+            #hero {
+                padding: 0 24px;
+            }
+
+            #about {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .pillars-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .works-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .work-item.featured {
+                grid-column: span 1;
+            }
+
+            .online-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .awards-categories {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .awards-header-stats {
+                flex-wrap: wrap;
+                gap: 32px;
+            }
+
+            .speaking-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .exp-item {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                padding: 40px 24px;
+            }
+
+            .contact-details {
+                gap: 32px;
+            }
+
+            footer {
+                padding: 24px;
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+
+            .hero-scroll {
+                left: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a href="#hero" class="nav-logo">G · A</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#what-i-do">Work</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#works">Films</a></li>
+            <li><a href="#awards">Awards</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-line"></div>
+        <h1 class="hero-tagline fade-in">
+            Stories live<br>in <em>silence.</em><br>I know where<br>to find them.
+        </h1>
+        <p class="hero-sub fade-in">Journalist · Cinematographer · Visual Storyteller · Amritsar × London</p>
+        <div class="hero-buttons fade-in">
+            <a href="#works" class="btn-primary">Watch My Film</a>
+            <a href="#contact" class="btn-secondary">Let's Work Together</a>
+        </div>
+        <div class="hero-scroll">
+            <div class="scroll-line"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="about-image-container fade-in">
+            <!-- REPLACE THE SRC BELOW WITH YOUR PHOTO LINK -->
+            <img src="YOUR_PHOTO_URL_HERE" alt="Gungun Arora" class="about-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="about-image-placeholder" style="display:none;">
+                <span>GUNGUN ARORA</span>
+            </div>
+            <div class="about-image-frame"></div>
+        </div>
+        <div class="about-content fade-in">
+            <div class="section-label">About</div>
+            <h2 class="section-title">Between two cities.<br>Inside every story.</h2>
+            <p class="about-text">I grew up in London for four years — the years that shape you most. Somewhere between two cultures, two cities, and two ways of seeing the world, I found that the only thing I was always doing was <em>paying attention.</em></p>
+            <p class="about-text">At family events, I was the one talking. Holding the room. Making sure the right information reached the right people at the right moment. A debate judge once told me I had a fact-oriented, no-nonsense style and that I'd make a great anchor. I went home and decided to take that seriously.</p>
+            <p class="about-text">I'm Gungun Arora — a journalist, cinematographer, and visual storyteller based in Amritsar. I shoot moments most people walk past. A mother lulling her child to sleep. A man bowing his head to something greater than himself, asking to be seen by a merciful eye. Two friends sharing a popsicle on the way home. I capture silence. I capture emotion.</p>
+            <p class="about-text">My cinematography is rich, decadent, raw and uncut — soaked in culture, colour and history. At Sacred Amritsar, I managed 13 international delegates over three days — and by day three, every single one of them told my supervisor I was the best delegate manager they had ever encountered. I am not confined to one role. I never have been. I am fluid — and that is my greatest strength.</p>
+            <div class="about-stats">
+                <div class="stat-item">
+                    <div class="stat-number">13</div>
+                    <div class="stat-label">International Delegates Managed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Original Films Directed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Awards Won</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Major Events Hosted</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT I DO -->
+    <section id="what-i-do">
+        <div class="section-label">Expertise</div>
+        <h2 class="section-title">What I do.</h2>
+        <div class="pillars-grid">
+            <div class="pillar fade-in">
+                <span class="pillar-icon">🎬</span>
+                <div class="pillar-title">Cinematography & Visual Storytelling</div>
+                <p class="pillar-desc">My films don't explain — they immerse. Rich in culture, raw in emotion, and always intentional down to the last cut.</p>
+                <div class="pillar-skills">
+                    <span class="skill-tag">Directing</span>
+                    <span class="skill-tag">Producing</span>
+                    <span class="skill-tag">Filming</span>
+                    <span class="skill-tag">Editing</span>
+                    <span class="skill-tag">Color Grading</span>
+                </div>
+            </div>
+            <div class="pillar fade-in">
+                <span class="pillar-icon">📸</span>
+                <div class="pillar-title">Photography</div>
+                <p class="pillar-desc">I shoot the moments that don't announce themselves. Silence. Emotion. The ones most people walk right past.</p>
+                <div class="pillar-skills">
+                    <span class="skill-tag">Macro Photography</span>
+                    <span class="skill-tag">Documentary</span>
+                    <span class="skill-tag">Color Grading</span>
+                    <span class="skill-tag">Composition</span>
+                </div>
+            </div>
+            <div class="pillar fade-in">
+                <span class="pillar-icon">🗞️</span>
+                <div class="pillar-title">Journalism & Reporting</div>
+                <p class="pillar-desc">Fact-oriented and no-nonsense — with a deep belief that human interest stories are the ones that actually change minds.</p>
+                <div class="pillar-skills">
+                    <span class="skill-tag">News Reporting</span>
+                    <span class="skill-tag">Research</span>
+                    <span class="skill-tag">Fact-Checking</span>
+                    <span class="skill-tag">Human Interest</span>
+                </div>
+            </div>
+            <div class="pillar fade-in">
+                <span class="pillar-icon">🎤</span>
+                <div class="pillar-title">Public Speaking & Hosting</div>
+                <p class="pillar-desc">I've held rooms, led stages, and made sure the right words reached the right people at the right moment — since before I knew it was a skill.</p>
+                <div class="pillar-skills">
+                    <span class="skill-tag">Stage Hosting</span>
+                    <span class="skill-tag">Debate</span>
+                    <span class="skill-tag">Keynote</span>
+                    <span class="skill-tag">Impromptu</span>
+                </div>
+            </div>
+            <div class="pillar fade-in">
+                <span class="pillar-icon">✍️</span>
+                <div class="pillar-title">Writing & Content</div>
+                <p class="pillar-desc">Two blogs. Two completely opposite voices. Because good writing isn't one thing — it's whatever the story needs.</p>
+                <div class="pillar-skills">
+                    <span class="skill-tag">Journalism</span>
+                    <span class="skill-tag">Creative Writing</span>
+                    <span class="skill-tag">Scriptwriting</span>
+                    <span class="skill-tag">Radio Drama</span>
+                </div>
+            </div>
+            <div class="pillar fade-in">
+                <span class="pillar-icon">🎪</span>
+                <div class="pillar-title">Event & Delegate Management</div>
+                <p class="pillar-desc">13 international delegates. 3 days. Every single one of them gave the highest possible feedback. I thrive under pressure.</p>
+                <div class="pillar-skills">
+                    <span class="skill-tag">Delegate Management</span>
+                    <span class="skill-tag">Artist Coordination</span>
+                    <span class="skill-tag">Crisis Handling</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+        <div class="section-label">Experience</div>
+        <h2 class="section-title">Where I've worked.<br>What I've proven.</h2>
+        <div class="experience-list">
+            <div class="exp-item fade-in">
+                <div class="exp-meta">
+                    <div class="exp-org">The Tribune</div>
+                    <div class="exp-role">Journalism Intern</div>
+                    <div class="exp-date">2025 — Present · Amritsar Branch</div>
+                </div>
+                <div class="exp-desc">
+                    <p>Currently embedded in one of India's most respected national newsrooms — learning the discipline, ethics, and craft of journalism from the ground up.</p>
+                    <p>Assisting in news research, drafting, and editorial coordination. Observing newsroom workflow, fact-checking practices, and reporting ethics. Supporting story development and publication processes.</p>
+                    <div class="exp-highlight">"Every day in this newsroom is a masterclass."</div>
+                </div>
+            </div>
+            <div class="exp-item fade-in">
+                <div class="exp-meta">
+                    <div class="exp-org">Teamwork Arts</div>
+                    <div class="exp-role">Delegate Management Volunteer</div>
+                    <div class="exp-date">20–22 Feb 2026 · Sacred Amritsar</div>
+                </div>
+                <div class="exp-desc">
+                    <p>Three days. Thirteen international delegates. Artists including Usha Uthup and Kailash Kher. And a responsibility to make every single person feel seen, supported, and taken care of.</p>
+                    <p>Served as first point of contact for delegates and performing artists. Managed hospitality coordination between artists, hotel management, and organizing teams. Resolved real-time logistical and delegate concerns under high-pressure conditions.</p>
+                    <div class="exp-highlight">"By day three, every delegate under my care personally commended my work — calling me the best delegate manager they had encountered."</div>
+                </div>
+            </div>
+            <div class="exp-item fade-in">
+                <div class="exp-meta">
+                    <div class="exp-org">BBK DAV</div>
+                    <div class="exp-role">Lead Event Host & Anchor</div>
+                    <div class="exp-date">2024 — Present · Amritsar</div>
+                </div>
+                <div class="exp-desc">
+                    <p>Led a group of 15 performers across 4 major college events — 2 fresher welcomes and 2 farewell ceremonies — as the lead anchor and hosting coordinator.</p>
+                    <div class="exp-highlight">"A great event doesn't happen. It's held together by someone who knows what they're doing."</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED WORKS -->
+    <section id="works">
+        <div class="section-label">Featured Works</div>
+        <h2 class="section-title">What I've made.</h2>
+        <div class="works-grid">
+            <!-- DHAGAR DHUN - FEATURED -->
+            <div class="work-item featured fade-in">
+                <div class="video-container">
+                    <iframe
+                        src="https://www.youtube.com/embed/n0E33P1wMfY"
+                        title="Dhagar Dhun — Documentary Film by Gungun Arora"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="featured-info">
+                    <div class="work-type">Documentary Film · 2024</div>
+                    <h3 class="work-title">Dhagar Dhun</h3>
+                    <p class="work-desc">A behind-the-scenes portrait of an all-women film crew — set against the backdrop of Jammu's rich Dogri culture. Every word of dialogue was written by me. Every light was placed by me. Every cut was intentional. Dhagar Dhun was built from the ground up by one person — and it showed me exactly what I'm capable of.</p>
+                    <div class="work-roles">
+                        <span class="role-tag">Director</span>
+                        <span class="role-tag">Producer</span>
+                        <span class="role-tag">Scriptwriter</span>
+                        <span class="role-tag">Cinematographer</span>
+                        <span class="role-tag">Editor</span>
+                    </div>
+                </div>
+            </div>
+            <!-- ANTIM DARPAN -->
+            <div class="work-item fade-in">
+                <div class="work-number">02</div>
+                <div class="work-type">Radio Drama</div>
+                <h3 class="work-title">Antim Darpan</h3>
+                <p class="work-desc">A complete radio drama — written, directed, produced and edited entirely by me. Radio drama is one of the most demanding storytelling formats because you have no visuals to rely on. Immersion has to come entirely from sound, voice, and writing. Antim Darpan is the project I'm most quietly proud of.</p>
+                <div class="work-roles">
+                    <span class="role-tag">Director</span>
+                    <span class="role-tag">Writer</span>
+                    <span class="role-tag">Producer</span>
+                    <span class="role-tag">Editor</span>
+                </div>
+            </div>
+            <!-- BLOGS -->
+            <div class="work-item fade-in">
+                <div class="work-number">03</div>
+                <div class="work-type">Writing · Two Blogs</div>
+                <h3 class="work-title">The Blogs</h3>
+                <p class="work-desc">Two platforms. Two completely opposite voices. One is human interest and journalistic — the other is personal, intimate, and exploratory. Because range is not a weakness. It's proof that I understand voice, audience, and purpose.</p>
+                <div class="work-roles">
+                    <span class="role-tag">Human Interest</span>
+                    <span class="role-tag">Journalism</span>
+                    <span class="role-tag">Personal Essays</span>
+                    <span class="role-tag">Creative Writing</span>
+                </div>
+                <div style="margin-top: 24px; display: flex; gap: 16px; flex-wrap: wrap;">
+                    <a href="https://teawithggblog.wordpress.com/" target="_blank" class="work-link">Journalism Blog →</a>
+                    <a href="https://teawithgg.wordpress.com/" target="_blank" class="work-link">Personal Blog →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ONLINE PRESENCE -->
+    <section id="online">
+        <div class="section-label">Find Me Online</div>
+        <h2 class="section-title">The full picture.</h2>
+        <div class="online-grid">
+            <a href="https://instagram.com/clickswithgg" target="_blank" class="online-item fade-in">
+                <div class="online-platform">Instagram · Photography</div>
+                <div class="online-handle">@clickswithgg</div>
+                <p class="online-desc">Where color tells the story — my photography and color grading work. Before and afters, visual experiments, and the eye behind the lens.</p>
+            </a>
+            <a href="https://instagram.com/newswithgg" target="_blank" class="online-item fade-in">
+                <div class="online-platform">Instagram · Journalism</div>
+                <div class="online-handle">@newswithgg</div>
+                <p class="online-desc">Journalism in real time — stories, reporting, media content, and the world as I see it through a journalist's eye.</p>
+            </a>
+            <a href="https://instagram.com/irajnicantdothis" target="_blank" class="online-item fade-in">
+                <div class="online-platform">Instagram · Vlogs</div>
+                <div class="online-handle">@irajnicantdothis</div>
+                <p class="online-desc">Inside the newsroom — raw, unfiltered internship vlogs from The Tribune. The real experience of becoming a journalist.</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- AWARDS -->
+    <section id="awards">
+        <div class="section-label">Recognition</div>
+        <h2 class="section-title">Recognition is not<br>the goal. But it<br>is a record.</h2>
+        <div class="awards-header-stats">
+            <div>
+                <div class="header-stat-number">10+</div>
+                <div class="header-stat-label">Awards & Recognition</div>
+            </div>
+            <div>
+                <div class="header-stat-number">3</div>
+                <div class="header-stat-label">Categories</div>
+            </div>
+            <div>
+                <div class="header-stat-number">2022</div>
+                <div class="header-stat-label">— Present</div>
+            </div>
+        </div>
+        <div class="awards-categories">
+            <div class="fade-in">
+                <div class="award-category-title">🗣️ Speaking & Debate</div>
+                <ul class="award-list">
+                    <li><span class="award-prize">1st Prize</span><br>Tatkalik Bhashan Pratiyogita — Prantiya Sanskriti Mahotsav (2022–23)</li>
+                    <li><span class="award-prize">2nd Prize</span><br>Tatkalik Bhashan Pratiyogita — Uttar Shetr Sanskriti Mahotsav (2022–23)</li>
+                    <li><span class="award-prize">Representative</span><br>BBK DAV at GNDU Youth Festival 2024 — Debate Competition</li>
+                    <li><span class="award-prize">Appreciation Award</span><br>Speech on Shaheed Bhagat Singh's Birthday — Police Commissionerate of Amritsar</li>
+                </ul>
+            </div>
+            <div class="fade-in">
+                <div class="award-category-title">🎙️ Media & Broadcast</div>
+                <ul class="award-list">
+                    <li><span class="award-prize">1st Prize</span><br>Radio Jockey — BBK Media Fest</li>
+                    <li><span class="award-prize">Appreciation Award</span><br>News Reading — BBK Media Fest</li>
+                    <li><span class="award-prize">3rd Prize</span><br>Piece to Camera — BBK Media Fest</li>
+                    <li><span class="award-prize">3rd Prize</span><br>Interview Seeking — BBK Media Fest</li>
+                    <li><span class="award-prize">2nd Prize</span><br>Lit-Hit & PPT Competition</li>
+                </ul>
+            </div>
+            <div class="fade-in">
+                <div class="award-category-title">🎭 Performance & Creative</div>
+                <ul class="award-list">
+                    <li><span class="award-prize">1st Prize</span><br>Talent Hunt — Mime Act Competition</li>
+                    <li><span class="award-prize">1st Prize</span><br>Vibhagiya Ghanit-Vigyan Mela (2013–2024)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPEAKING -->
+    <section id="speaking">
+        <div class="section-label">Public Speaking</div>
+        <div class="speaking-grid">
+            <div class="fade-in">
+                <p class="speaking-intro">I don't just speak to <em>audiences.</em> I speak to <em>people.</em></p>
+                <p class="speaking-body">Available for speaking engagements, panel discussions, event hosting, and keynote presentations. I bring precision, presence, and a genuine belief that the words matter — every single one of them. Based in Amritsar. Open to travel.</p>
+                <div class="gold-divider"></div>
+                <p class="speaking-body">From competitive debate stages to college ceremonies hosting 15 people live — I've learned that the best speakers aren't the loudest ones. They're the ones who make every person in the room feel like they're being spoken to directly.</p>
+            </div>
+            <div class="fade-in">
+                <ul class="topics-list">
+                    <li class="topic-item"><span class="topic-number">01</span> Spirituality & Inner Life</li>
+                    <li class="topic-item"><span class="topic-number">02</span> Womanhood & Feminism</li>
+                    <li class="topic-item"><span class="topic-number">03</span> Logical Fallacies & Critical Thinking</li>
+                    <li class="topic-item"><span class="topic-number">04</span> Motivation & Personal Narrative</li>
+                    <li class="topic-item"><span class="topic-number">05</span> Culture, Identity & Storytelling</li>
+                    <li class="topic-item"><span class="topic-number">06</span> Journalism & Media in the Digital Age</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="section-label" style="justify-content: center;">Contact</div>
+        <h2 class="contact-tagline fade-in">Let's build something <em>worth remembering.</em></h2>
+        <p class="contact-sub fade-in">Open to journalism collaborations, cinematography projects, photography commissions, speaking engagements, and event hosting. I bring precision, presence, and a genuine belief that the work matters.</p>
+        <a href="mailto:1996gungunarora@gmail.com" class="contact-email fade-in">1996gungunarora@gmail.com</a>
+        <div class="contact-details fade-in">
+            <div class="contact-detail">
+                <div class="contact-detail-label">Phone</div>
+                <div class="contact-detail-value">+91 9872319243</div>
+            </div>
+            <div class="contact-detail">
+                <div class="contact-detail-label">Based In</div>
+                <div class="contact-detail-value">Amritsar, Punjab</div>
+            </div>
+            <div class="contact-detail">
+                <div class="contact-detail-label">Available For</div>
+                <div class="contact-detail-value">Work & Collaborations</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-name">GUNGUN ARORA</div>
+        <div class="footer-copy">© 2025 · Journalist · Cinematographer · Visual Storyteller</div>
+    </footer>
+
+    <script>
+        // Fade in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Hero animations on load
+        window.addEventListener('load', () => {
+            document.querySelectorAll('#hero .fade-in').forEach((el, i) => {
+                setTimeout(() => {
+                    el.classList.add('visible');
+                }, i * 200);
+            });
+        });
+    </script>
+</body>
+</html>
