@@ -559,4 +559,1693 @@
             font-style: italic;
             color: var(--blush-l);
             line-height: 1.7;
-        
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            margin-top: 52px;
+            border: 1px solid rgba(200,151,58,0.09);
+        }
+        .stat-box {
+            padding: 28px 24px;
+            border-right: 1px solid rgba(200,151,58,0.09);
+            border-bottom: 1px solid rgba(200,151,58,0.09);
+            transition: background 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(200,151,58,0.05), rgba(204,125,150,0.03));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .stat-box:hover::before { opacity: 1; }
+        .stat-n {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            font-weight: 400;
+            background: linear-gradient(135deg, var(--gold), var(--blush));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+        .stat-l {
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+            margin-top: 8px;
+            line-height: 1.5;
+        }
+
+        /* SKILLS BAR */
+        .skills-wrap {
+            margin-top: 48px;
+            padding-top: 48px;
+            border-top: 1px solid rgba(200,151,58,0.09);
+        }
+        .skills-title {
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 24px;
+        }
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .skill-tag {
+            padding: 6px 18px;
+            border: 1px solid rgba(200,151,58,0.18);
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: var(--text);
+            border-radius: 24px;
+            background: rgba(200,151,58,0.03);
+            transition: all 0.3s;
+        }
+        .skill-tag:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(200,151,58,0.08);
+        }
+
+        /* ===== TIMELINE ===== */
+        #timeline {
+            padding: 140px 60px;
+            background: var(--bg2);
+            position: relative;
+            overflow: hidden;
+        }
+        #timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 260px;
+            bottom: 100px;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, var(--gold), var(--blush), var(--silver), transparent);
+            transform: translateX(-50%);
+        }
+
+        .tl-header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .tl-items {
+            display: flex;
+            flex-direction: column;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .tl-item {
+            display: grid;
+            grid-template-columns: 1fr 56px 1fr;
+            margin-bottom: 64px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.9s cubic-bezier(0.16,1,0.3,1);
+        }
+        .tl-item.visible { opacity:1; transform:translateY(0); }
+
+        /* even items — content on right */
+        .tl-item:nth-child(even) .tl-card  { grid-column:3; grid-row:1; }
+        .tl-item:nth-child(even) .tl-empty { grid-column:1; grid-row:1; }
+        .tl-item:nth-child(even) .tl-mid   { grid-column:2; grid-row:1; }
+
+        .tl-card {
+            background: var(--bg3);
+            padding: 36px;
+            border: 1px solid rgba(200,151,58,0.07);
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+            position: relative;
+            overflow: hidden;
+        }
+        .tl-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(58,16,64,0.4), rgba(200,151,58,0.03));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .tl-card:hover::before { opacity:1; }
+        .tl-card:hover {
+            border-color: rgba(200,151,58,0.22);
+            transform: translateY(-4px);
+        }
+
+        .tl-empty {}
+
+        .tl-mid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 36px;
+        }
+        .tl-dot {
+            width: 13px; height: 13px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--blush));
+            flex-shrink: 0;
+            box-shadow: 0 0 18px rgba(200,151,58,0.4);
+            transition: all 0.4s;
+        }
+        .tl-card:hover ~ .tl-mid .tl-dot {
+            transform: scale(1.6);
+            box-shadow: 0 0 36px rgba(200,151,58,0.65);
+        }
+
+        .tl-year {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        .tl-emoji { font-size: 26px; margin-bottom: 14px; display: block; }
+        .tl-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: var(--parchment);
+            margin-bottom: 10px;
+            line-height: 1.25;
+        }
+        .tl-body {
+            font-size: 13px;
+            line-height: 1.9;
+            color: var(--text);
+            opacity: 0.72;
+        }
+        .tl-expand {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s cubic-bezier(0.16,1,0.3,1);
+        }
+        .tl-expand.open { max-height: 400px; }
+        .tl-expand-inner {
+            padding-top: 18px;
+            margin-top: 18px;
+            border-top: 1px solid rgba(200,151,58,0.1);
+            font-size: 13px;
+            line-height: 1.9;
+            color: var(--blush-l);
+            opacity: 0.82;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== EXPANDABLE PORTFOLIO ===== */
+        .exp-wrap { background: var(--bg); }
+        .exp-section { border-bottom: 1px solid rgba(200,151,58,0.07); overflow: hidden; }
+
+        .exp-head {
+            padding: 44px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: none;
+            transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+            position: relative;
+            overflow: hidden;
+        }
+        .exp-head::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(58,16,64,0.18), transparent);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .exp-head:hover::before { opacity:1; }
+
+        .exp-head-l {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            position: relative;
+            z-index: 1;
+        }
+        .exp-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 13px;
+            color: var(--gold);
+            opacity: 0.32;
+            letter-spacing: 2px;
+            min-width: 26px;
+        }
+        .exp-icon { font-size: 28px; }
+        .exp-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(26px, 3.2vw, 44px);
+            font-weight: 500;
+            color: var(--parchment);
+            transition: color 0.4s;
+            line-height: 1.1;
+        }
+        .exp-head:hover .exp-title { color: var(--gold); }
+        .exp-sub {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-top: 7px;
+        }
+        .exp-toggle {
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            border: 1px solid rgba(200,151,58,0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+        .exp-toggle svg {
+            width: 17px; height: 17px;
+            stroke: var(--gold); fill: none; stroke-width: 1.5;
+            transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+        }
+        .exp-head.active .exp-toggle {
+            background: linear-gradient(135deg, var(--gold), var(--blush));
+            border-color: transparent;
+            box-shadow: 0 8px 28px rgba(200,151,58,0.28);
+        }
+        .exp-head.active .exp-toggle svg {
+            stroke: var(--bg);
+            transform: rotate(180deg);
+        }
+
+        .exp-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 1s cubic-bezier(0.16,1,0.3,1);
+            background: var(--bg2);
+        }
+        .exp-body.open { max-height: 9000px; }
+        .exp-inner { padding: 72px 60px; }
+
+        /* ===== SLIDESHOW ===== */
+        .slideshow-wrap {
+            position: relative;
+            width: 100%;
+            background: var(--bg);
+            overflow: hidden;
+        }
+
+        .slides-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            position: relative;
+        }
+        .slide.active { display: flex; justify-content: center; align-items: center; }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+            max-height: 90vh;
+            object-fit: contain;
+            display: block;
+            background: var(--bg);
+            animation: slideFadeIn 0.8s cubic-bezier(0.16,1,0.3,1);
+        }
+
+        @keyframes slideFadeIn {
+            from { opacity:0; transform:scale(0.98); filter:blur(6px); }
+            to   { opacity:1; transform:scale(1);    filter:blur(0);   }
+        }
+
+        .slide-ui {
+            position: relative;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg2);
+        }
+        .slide-counter {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 400;
+            color: var(--parchment);
+            opacity: 0.25;
+        }
+        .slide-dots {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .slide-dot {
+            width: 4px; height: 4px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.25);
+            cursor: none;
+            transition: all 0.4s;
+        }
+        .slide-dot.active {
+            width: 22px;
+            border-radius: 2px;
+            background: var(--gold);
+        }
+        .slide-btns {
+            display: flex;
+            gap: 10px;
+        }
+        .slide-btn {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            border: 1px solid rgba(200,151,58,0.22);
+            background: rgba(200,151,58,0.05);
+            color: var(--gold);
+            font-size: 18px;
+            cursor: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s;
+        }
+        .slide-btn:hover {
+            background: rgba(200,151,58,0.18);
+            border-color: var(--gold);
+        }
+
+        .gallery-caption {
+            padding: 40px 60px 56px;
+            background: var(--bg2);
+        }
+        .gallery-caption p {
+            font-family: 'Playfair Display', serif;
+            font-size: 19px;
+            font-style: italic;
+            color: var(--blush-l);
+            line-height: 1.75;
+            max-width: 680px;
+            opacity: 0.82;
+        }
+
+        /* ===== FILMS ===== */
+        .films-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 44px;
+            margin-bottom: 56px;
+        }
+        .film-card {}
+        .film-embed {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border: 1px solid rgba(200,151,58,0.1);
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+        .film-embed iframe { width:100%; height:100%; border:none; display:block; }
+        .film-type {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--blush);
+            margin-bottom: 10px;
+        }
+        .film-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: var(--parchment);
+            margin-bottom: 14px;
+            line-height: 1.15;
+        }
+        .film-tags { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+        .film-tag {
+            font-size: 10px;
+            letter-spacing: 2px;
+            padding: 4px 13px;
+            border: 1px solid rgba(200,151,58,0.18);
+            color: var(--gold);
+            text-transform: uppercase;
+            border-radius: 20px;
+        }
+        .film-desc { font-size:14px; line-height:1.9; opacity:0.7; }
+
+        /* BTS — includes video full size */
+        .bts-label {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--blush);
+            margin: 52px 0 20px;
+        }
+        .bts-reel {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 8px;
+        }
+        .bts-cell {
+            position: relative;
+            overflow: hidden;
+            background: var(--plum);
+        }
+        .bts-cell img,
+        .bts-cell video {
+            width: 100%;
+            height: auto;
+            min-height: 200px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
+        }
+        .bts-cell.video-cell {
+            grid-column: span 3;
+        }
+        .bts-cell.video-cell video {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: contain;
+            background: #000;
+        }
+        .bts-cell-ov {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(58,16,64,0.55), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+        .bts-cell:hover .bts-cell-ov { opacity:1; }
+        .bts-cell:hover img { transform:scale(1.05); }
+
+        /* ===== JOURNALISM ===== */
+        .tribune-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 44px;
+        }
+        .trib-cell {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            background: var(--plum);
+        }
+        .trib-cell img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            filter: sepia(0.1);
+            transition: transform 0.8s cubic-bezier(0.16,1,0.3,1), filter 0.5s;
+        }
+        .trib-cell:hover img { transform:scale(1.04); filter:sepia(0); }
+        .trib-cap {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(8,3,8,0.9), transparent);
+        }
+        .trib-cap-tag {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .blogs-duo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 48px;
+        }
+        .blog-tile {
+            padding: 44px 36px;
+            background: var(--bg3);
+            border-top: 1px solid var(--gold);
+            text-decoration: none;
+            color: var(--text);
+            display: block;
+            transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+            position: relative;
+            overflow: hidden;
+        }
+        .blog-tile::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 0;
+            background: linear-gradient(135deg, rgba(58,16,64,0.5), rgba(200,151,58,0.04));
+            transition: height 0.5s cubic-bezier(0.16,1,0.3,1);
+        }
+        .blog-tile:hover::before { height:100%; }
+        .blog-tile:hover { transform:translateY(-6px); box-shadow: 0 24px 72px rgba(200,151,58,0.07); }
+        .blog-arrow {
+            position: absolute;
+            top: 24px; right: 24px;
+            font-size: 18px;
+            color: var(--gold);
+            opacity: 0;
+            transition: all 0.4s;
+            transform: translate(-4px,4px);
+        }
+        .blog-tile:hover .blog-arrow { opacity:1; transform:translate(0,0); }
+        .blog-type {
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--blush);
+            margin-bottom: 14px;
+            position: relative; z-index:1;
+        }
+        .blog-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--parchment);
+            margin-bottom: 14px;
+            position: relative; z-index:1;
+            line-height: 1.2;
+        }
+        .blog-desc {
+            font-size: 13px;
+            line-height: 1.8;
+            opacity: 0.6;
+            position: relative; z-index:1;
+        }
+
+        /* ===== EXPERIENCE CARDS ===== */
+        .exp-cards { display:flex; flex-direction:column; gap:18px; margin-bottom:52px; }
+        .exp-card {
+            padding: 40px;
+            background: var(--bg3);
+            border-left: 2px solid var(--gold);
+            transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+            position: relative;
+            overflow: hidden;
+        }
+        .exp-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(200,151,58,0.04), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .exp-card:hover::before { opacity:1; }
+        .exp-card:hover { border-left-color:var(--blush); transform:translateX(4px); }
+        .exp-org {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+        .exp-role {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--silver);
+            opacity: 0.6;
+            margin-bottom: 5px;
+        }
+        .exp-date { font-size:11px; opacity:0.32; margin-bottom:18px; letter-spacing:1px; }
+        .exp-desc { font-size:14px; line-height:1.9; opacity:0.74; }
+        .exp-quote {
+            margin-top: 22px;
+            padding: 18px 22px;
+            border-left: 1px solid var(--blush);
+            background: rgba(204,125,150,0.05);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 17px;
+            color: var(--blush-l);
+            line-height: 1.6;
+        }
+
+        /* ===== SACRED ===== */
+        .sacred-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 8px;
+            margin-top: 44px;
+        }
+        .sacred-main img {
+            width:100%; height:540px; object-fit:cover; display:block;
+            transition:transform 0.8s cubic-bezier(0.16,1,0.3,1);
+        }
+        .sacred-main:hover img { transform:scale(1.03); }
+        .sacred-main { overflow:hidden; }
+        .sacred-side { display:grid; gap:8px; }
+        .sacred-side-item { overflow:hidden; }
+        .sacred-side-item img {
+            width:100%; height:266px; object-fit:cover; display:block;
+            transition:transform 0.8s cubic-bezier(0.16,1,0.3,1);
+        }
+        .sacred-side-item:hover img { transform:scale(1.05); }
+
+        /* ===== SPEAKING ===== */
+        .speaking-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 72px;
+        }
+        .speaking-big {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-style: italic;
+            line-height: 1.65;
+            color: var(--parchment);
+            margin-bottom: 28px;
+        }
+        .speaking-big em { color:var(--gold); font-style:normal; }
+        .speaking-body { font-size:15px; line-height:1.95; opacity:0.74; margin-bottom:16px; }
+        .topics-ul { list-style:none; }
+        .topic-row {
+            padding: 22px 0;
+            border-bottom: 1px solid rgba(200,151,58,0.09);
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+            cursor: default;
+        }
+        .topic-row:hover { padding-left:14px; border-color:rgba(200,151,58,0.28); }
+        .topic-row:hover .topic-nm { color:var(--gold); }
+        .topic-n { font-size:10px; color:var(--gold); opacity:0.38; min-width:22px; }
+        .topic-nm {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: var(--parchment);
+            transition: color 0.4s;
+        }
+
+        /* ===== AWARDS ===== */
+        .awards-q {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-style: italic;
+            color: var(--silver-l);
+            opacity: 0.65;
+            margin-bottom: 56px;
+            max-width: 560px;
+        }
+        .awards-cats { display:grid; grid-template-columns:repeat(3,1fr); gap:44px; }
+        .award-cat-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: var(--gold);
+            margin-bottom: 24px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid rgba(200,151,58,0.13);
+        }
+        .award-list { list-style:none; display:flex; flex-direction:column; gap:18px; }
+        .award-item {
+            font-size: 13px;
+            line-height: 1.7;
+            opacity: 0.7;
+            padding-left: 14px;
+            position: relative;
+        }
+        .award-item::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            font-size: 6px;
+            color: var(--gold);
+            top: 5px;
+        }
+        .award-badge {
+            display: inline-block;
+            font-size: 9px;
+            letter-spacing: 1px;
+            padding: 2px 9px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(200,151,58,0.13), rgba(204,125,150,0.08));
+            color: var(--gold);
+            border: 1px solid rgba(200,151,58,0.13);
+            margin-bottom: 5px;
+        }
+
+        /* ===== ONLINE ===== */
+        .online-strip { background:var(--bg2); padding:120px 60px; }
+        .online-trio { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:56px; }
+        .online-tile {
+            padding: 40px 32px;
+            background: var(--bg3);
+            border: 1px solid rgba(200,151,58,0.05);
+            text-decoration: none;
+            color: var(--text);
+            display: block;
+            transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+            position: relative;
+            overflow: hidden;
+        }
+        .online-tile::after {
+            content: '↗';
+            position: absolute;
+            top: 22px; right: 24px;
+            font-size: 16px;
+            color: var(--gold);
+            opacity: 0;
+            transition: all 0.4s;
+            transform: translate(-4px,4px);
+        }
+        .online-tile:hover {
+            transform: translateY(-7px);
+            border-color: rgba(200,151,58,0.18);
+            box-shadow: 0 28px 72px rgba(8,3,8,0.5), 0 6px 28px rgba(200,151,58,0.05);
+        }
+        .online-tile:hover::after { opacity:1; transform:translate(0,0); }
+        .online-platform { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--blush); margin-bottom:14px; }
+        .online-handle {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            background: linear-gradient(135deg, var(--gold), var(--silver));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 14px;
+        }
+        .online-desc { font-size:13px; line-height:1.75; opacity:0.55; }
+
+        /* ===== CONTACT ===== */
+        #contact {
+            padding: 160px 60px;
+            text-align: center;
+            background: var(--bg);
+            position: relative;
+            overflow: hidden;
+        }
+        #contact::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 50% 50%, rgba(58,16,64,0.4) 0%, transparent 65%),
+                radial-gradient(ellipse at 15% 85%, rgba(200,151,58,0.05) 0%, transparent 40%),
+                radial-gradient(ellipse at 85% 10%, rgba(204,125,150,0.05) 0%, transparent 40%);
+        }
+        .contact-inner { position:relative; z-index:1; }
+        .contact-h {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(44px, 6.5vw, 88px);
+            font-weight: 500;
+            line-height: 1.12;
+            margin-bottom: 22px;
+            color: var(--parchment);
+        }
+        .contact-h em {
+            font-style: italic;
+            background: linear-gradient(135deg, var(--gold), var(--blush-l), var(--silver));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .contact-sub {
+            font-size: 15px;
+            opacity: 0.52;
+            max-width: 520px;
+            margin: 0 auto 60px;
+            line-height: 1.9;
+        }
+        .contact-email {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            background: linear-gradient(135deg, var(--gold), var(--blush-l));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 72px;
+            transition: opacity 0.4s;
+        }
+        .contact-email:hover { opacity:0.7; }
+        .contact-row {
+            display: flex;
+            justify-content: center;
+            gap: 72px;
+            margin-bottom: 72px;
+            flex-wrap: wrap;
+        }
+        .c-label { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); opacity:0.5; margin-bottom:9px; }
+        .c-val { font-size:15px; color:var(--silver-l); }
+        .contact-ctas { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 32px 60px;
+            border-top: 1px solid rgba(200,151,58,0.07);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg);
+        }
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 15px;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, var(--gold), var(--blush));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .footer-copy { font-size:11px; opacity:0.22; letter-spacing:1px; }
+
+        /* ===== REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(44px);
+            filter: blur(5px);
+            transition:
+                opacity  0.9s cubic-bezier(0.16,1,0.3,1),
+                transform 0.9s cubic-bezier(0.16,1,0.3,1),
+                filter   0.9s cubic-bezier(0.16,1,0.3,1);
+        }
+        .reveal.visible { opacity:1; transform:translateY(0); filter:blur(0); }
+        .reveal-d1 { transition-delay:0.1s; }
+        .reveal-d2 { transition-delay:0.2s; }
+        .reveal-d3 { transition-delay:0.3s; }
+
+        /* ===== MOBILE ===== */
+        @media (max-width: 900px) {
+            nav { padding:18px 24px; }
+            nav.scrolled { padding:14px 24px; }
+
+            .hero-inner { padding:130px 24px 100px; }
+            .hero-side-stats { display:none; }
+            .hero-ctas { margin-bottom:48px; }
+
+            #about { grid-template-columns:1fr; padding:80px 24px; gap:48px; }
+            .about-visual { position:static; }
+
+            #timeline { padding:80px 24px; }
+            #timeline::before { left:20px; }
+            .tl-items { max-width:100%; }
+            .tl-item { grid-template-columns:36px 1fr; }
+            .tl-item .tl-card  { grid-column:2; grid-row:1; }
+            .tl-item .tl-empty { display:none; }
+            .tl-item .tl-mid   { grid-column:1; grid-row:1; }
+            .tl-item:nth-child(even) .tl-card  { grid-column:2; }
+            .tl-item:nth-child(even) .tl-empty { display:none; }
+            .tl-item:nth-child(even) .tl-mid   { grid-column:1; }
+
+            .exp-head { padding:28px 24px; }
+            .exp-head-l { gap:16px; }
+            .exp-inner { padding:40px 24px; }
+
+            .films-grid { grid-template-columns:1fr; }
+            .bts-reel { grid-template-columns:1fr 1fr; }
+            .bts-cell.video-cell { grid-column:span 2; }
+            .tribune-grid { grid-template-columns:1fr; }
+            .blogs-duo { grid-template-columns:1fr; }
+            .sacred-layout { grid-template-columns:1fr; }
+            .speaking-layout { grid-template-columns:1fr; gap:44px; }
+            .awards-cats { grid-template-columns:1fr; gap:36px; }
+            .online-trio { grid-template-columns:1fr; }
+            .online-strip { padding:80px 24px; }
+            .slide-ui { padding:16px 24px; }
+            .gallery-caption { padding:28px 24px 40px; }
+
+            #contact { padding:96px 24px; }
+            .contact-row { gap:36px; }
+
+            footer { padding:22px 24px; flex-direction:column; gap:8px; text-align:center; }
+        }
+
+        @media (min-width: 901px) and (max-width: 1280px) {
+            .hero-inner { padding:130px 60px 100px; max-width:65%; }
+            .hero-side-stats { right:40px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor"  id="cursor"></div>
+<div class="cursor-ring" id="cring"></div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#about"    onclick="closeMenu()">About</a>
+    <a href="#timeline" onclick="closeMenu()">Journey</a>
+    <a href="#portfolio" onclick="closeMenu()">Work</a>
+    <a href="#contact"  onclick="closeMenu()">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+    <a href="#hero" class="nav-logo">GUNGUN ARORA</a>
+    <div class="hamburger" id="burger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grain"></div>
+
+    <div class="hero-inner">
+        <p class="hero-pre">Journalist · Cinematographer · Visual Storyteller</p>
+
+        <h1 class="hero-name">
+            <span class="n1">Gungun</span>
+            <span class="n2">Arora</span>
+        </h1>
+
+        <p class="hero-tagline">
+            I don't chase stories.<br>
+            <em>I'm already there when they happen.</em>
+        </p>
+        <p class="hero-sub">Every frame a truth. Every word a reckoning. Every room — mine.</p>
+
+        <div class="hero-roles">
+            <span class="role-pill">Journalist</span>
+            <span class="role-pill">Cinematographer</span>
+            <span class="role-pill">Photographer</span>
+            <span class="role-pill">Public Speaker</span>
+            <span class="role-pill">Visual Storyteller</span>
+            <span class="role-pill">Writer</span>
+            <span class="role-pill">AI Fluent</span>
+        </div>
+
+        <div class="hero-ctas">
+            <a href="#films-sec" class="btn-silk">Watch My Films</a>
+            <a href="#portfolio"  class="btn-linen">View My Work</a>
+        </div>
+
+        <div class="hero-scroll-row">
+            <div class="scroll-line"></div>
+            <span class="scroll-txt">Scroll to explore</span>
+        </div>
+    </div>
+
+    <!-- Side stats — desktop -->
+    <div class="hero-side-stats">
+        <div class="hss-item">
+            <div class="hss-num">13+</div>
+            <div class="hss-lbl">Delegates Managed</div>
+        </div>
+        <div class="hss-div"></div>
+        <div class="hss-item">
+            <div class="hss-num">10+</div>
+            <div class="hss-lbl">Awards Won</div>
+        </div>
+        <div class="hss-div"></div>
+        <div class="hss-item">
+            <div class="hss-num">2</div>
+            <div class="hss-lbl">Films Directed</div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+    <div class="about-visual reveal">
+        <div class="about-img-wrap">
+            <img
+                src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/Screenshot_20250316_180712_Photos.jpg"
+                alt="Gungun Arora"
+                class="about-img"
+                onerror="this.style.display='none'"
+            >
+            <div class="about-img-fade"></div>
+            <div class="corner tl"></div>
+            <div class="corner tr"></div>
+            <div class="corner bl"></div>
+            <div class="corner br"></div>
+            <div class="about-border"></div>
+        </div>
+        <div class="about-caption">
+            <span class="about-caption-txt">Gungun Arora · Amritsar</span>
+            <div class="about-caption-line"></div>
+        </div>
+    </div>
+
+    <div class="about-text-col">
+        <div class="eyebrow reveal">About</div>
+        <h2 class="sec-title reveal">There is a kind of person<br>who walks into a room<br>and immediately <em>reads it.</em></h2>
+        <p class="para reveal">I have always been that person. I just spent years learning how to <strong>use it.</strong></p>
+        <p class="para reveal reveal-d1">I grew up between Amritsar and London — two cities, two cultures, two entirely different ways of seeing. Somewhere in that distance I developed something that can't be taught: <span class="bls">the instinct to pay attention when everyone else is performing.</span></p>
+        <div class="pull-quote reveal reveal-d2">
+            <p>A debate judge — someone whose job was to find weakness — told me I had the precision of a natural anchor and the instincts of a real journalist. I didn't celebrate. I got to work.</p>
+        </div>
+        <p class="para reveal">I'm a journalist interning at The Tribune, a cinematographer who directed her first two works entirely solo, a photographer who shoots in silence, a public speaker who has held stages, and a visual storyteller who believes every frame, every word, and every room has a story waiting to be told <strong>right.</strong></p>
+        <p class="para reveal reveal-d1">My cinematography is rich, decadent, raw and uncut — soaked in culture, colour and history. I am not confined to one role. <strong>I am fluid — and that is my greatest strength.</strong></p>
+
+        <div class="about-stats reveal reveal-d2">
+            <div class="stat-box">
+                <div class="stat-n">13+</div>
+                <div class="stat-l">Delegates Personally Managed at Sacred Amritsar</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-n">2</div>
+                <div class="stat-l">Original Works Directed, Produced & Edited Solo</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-n">10+</div>
+                <div class="stat-l">Awards Across Debate, Media & Performance</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-n">4</div>
+                <div class="stat-l">Major Events Hosted as Lead Anchor</div>
+            </div>
+        </div>
+
+        <div class="skills-wrap reveal reveal-d3">
+            <div class="skills-title">Core Skills</div>
+            <div class="skills-grid">
+                <span class="skill-tag">News Reporting</span>
+                <span class="skill-tag">Cinematography</span>
+                <span class="skill-tag">Photography</span>
+                <span class="skill-tag">Color Grading</span>
+                <span class="skill-tag">Public Speaking</span>
+                <span class="skill-tag">Scriptwriting</span>
+                <span class="skill-tag">Radio Drama</span>
+                <span class="skill-tag">Event Management</span>
+                <span class="skill-tag">Delegate Management</span>
+                <span class="skill-tag">Stage Hosting</span>
+                <span class="skill-tag">Debate</span>
+                <span class="skill-tag">Content Creation</span>
+                <span class="skill-tag">AI Fluency</span>
+                <span class="skill-tag">Editorial Writing</span>
+                <span class="skill-tag">Research & Fact-Checking</span>
+                <span class="skill-tag">Audience Engagement</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== TIMELINE ===== -->
+<section id="timeline">
+    <div class="tl-header reveal">
+        <div class="eyebrow" style="justify-content:center;">The Journey</div>
+        <h2 class="sec-title" style="text-align:center;max-width:560px;margin:0 auto;">Every chapter<br>that made me <em>this.</em></h2>
+    </div>
+    <div class="tl-items">
+
+        <div class="tl-item">
+            <div class="tl-card" onclick="toggleTL(this)">
+                <div class="tl-year">Early Years</div>
+                <span class="tl-emoji">🇬🇧</span>
+                <div class="tl-title">London & The Art of Attention</div>
+                <p class="tl-body">Four years in a city that taught me to see the world differently. Between two cultures, I developed something that can't be taught — the instinct to pay attention.</p>
+                <div class="tl-expand"><div class="tl-expand-inner">Growing up between London and Amritsar gave me two lenses. One that sees with the precision of distance. One that sees with the warmth of belonging. Both live in everything I create.</div></div>
+            </div>
+            <div class="tl-mid"><div class="tl-dot"></div></div>
+            <div class="tl-empty"></div>
+        </div>
+
+        <div class="tl-item">
+            <div class="tl-empty"></div>
+            <div class="tl-mid"><div class="tl-dot"></div></div>
+            <div class="tl-card" onclick="toggleTL(this)">
+                <div class="tl-year">2022 — 2023</div>
+                <span class="tl-emoji">🎤</span>
+                <div class="tl-title">The Debate Stage</div>
+                <p class="tl-body">A judge told me I'd make a great anchor. I walked away with two first prizes in impromptu speech and an appreciation award from the Police Commissionerate of Amritsar.</p>
+                <div class="tl-expand"><div class="tl-expand-inner">1st Prize — Prantiya Sanskriti Mahotsav. 2nd Prize — Uttar Shetr Sanskriti Mahotsav. Appreciation Award — Speech on Shaheed Bhagat Singh's Birthday. The stage has never intimidated me. It has always felt like home.</div></div>
+            </div>
+        </div>
+
+        <div class="tl-item">
+            <div class="tl-card" onclick="toggleTL(this)">
+                <div class="tl-year">2023 — 2024</div>
+                <span class="tl-emoji">📸</span>
+                <div class="tl-title">The First Frame</div>
+                <p class="tl-body">I picked up a camera and discovered I'd been seeing in macro all along. Every shot an emotion. Every frame a decision. Beauty doesn't announce itself — it waits.</p>
+                <div class="tl-expand"><div class="tl-expand-inner">My photography is 90% macro — the world in extreme close-up. A bee on a mustard flower. The universe inside a human iris. I don't hunt for beauty. I wait for it to reveal itself.</div></div>
+            </div>
+            <div class="tl-mid"><div class="tl-dot"></div></div>
+            <div class="tl-empty"></div>
+        </div>
+
+        <div class="tl-item">
+            <div class="tl-empty"></div>
+            <div class="tl-mid"><div class="tl-dot"></div></div>
+            <div class="tl-card" onclick="toggleTL(this)">
+                <div class="tl-year">2026</div>
+                <span class="tl-emoji">🎬</span>
+                <div class="tl-title">Dhagar Dhun & Antim Darpan</div>
+                <p class="tl-body">Two complete original works — one documentary film, one radio drama — both directed, produced, scripted, and edited entirely by me. Solo. From first word to final cut.</p>
+                <div class="tl-expand"><div class="tl-expand-inner">Dhagar Dhun — a 7-minute documentary portrait of an all-women film crew set against Jammu's Dogri culture. Every light placed by hand. Every cut intentional. Antim Darpan followed — a radio drama built on sound alone. Two formats. One commitment to craft.</div></div>
+            </div>
+        </div>
+
+        <div class="tl-item">
+            <div class="tl-card" onclick="toggleTL(this)">
+                <div class="tl-year">February 2026</div>
+                <span class="tl-emoji">🎪</span>
+                <div class="tl-title">Sacred Amritsar</div>
+                <p class="tl-body">Hundreds of delegates. An international cultural festival. Artists including Usha Uthup and Kailash Kher. I personally managed 13+ delegates — and by the final evening, every one of them asked for me by name.</p>
+                <div class="tl-expand"><div class="tl-expand-inner">Teamwork Arts. Sacred Amritsar. 72 hours of logistics, hospitality, crisis management, and human connection. I used to doubt my ability to give people a satisfactory experience. Sacred Amritsar erased that doubt permanently. I thrive under pressure.</div></div>
+            </div>
+            <div class="tl-mid"><div class="tl-dot"></div></div>
+            <div class="tl-empty"></div>
+        </div>
+
+        <div class="tl-item">
+            <div class="tl-empty"></div>
+            <div class="tl-mid"><div class="tl-dot"></div></div>
+            <div class="tl-card" onclick="toggleTL(this)">
+                <div class="tl-year">2025 — Present</div>
+                <span class="tl-emoji">🗞️</span>
+                <div class="tl-title">The Tribune</div>
+                <p class="tl-body">The newsroom. The real thing. Currently interning at one of India's most respected national newspapers — learning the discipline, ethics, and craft of journalism from the ground up.</p>
+                <div class="tl-expand"><div class="tl-expand-inner">Every day in this newsroom is a masterclass. Research, drafting, editorial coordination, fact-checking, story development. I am building the foundation of a career I intend to be remarkable.</div></div>
+            </div>
+        </div>
+
+        <div class="tl-item">
+            <div class="tl-card" onclick="toggleTL(this)">
+                <div class="tl-year">The Horizon</div>
+                <span class="tl-emoji">🔮</span>
+                <div class="tl-title">What Comes Next</div>
+                <p class="tl-body">Filmmaker. Cinematographer. Visual storyteller. I am building something I believe in deeply — a body of work at the intersection of culture, humanity, and truth.</p>
+                <div class="tl-expand"><div class="tl-expand-inner">In five years I see a filmmaker who refused to be confined to one lane. The work is already underway. The vision is already clear. Watch this space.</div></div>
+            </div>
+            <div class="tl-mid"><div class="tl-dot"></div></div>
+            <div class="tl-empty"></div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ===== PORTFOLIO ===== -->
+<div id="portfolio" class="exp-wrap">
+
+    <!-- 01 PHOTOGRAPHY -->
+    <div class="exp-section reveal">
+        <div class="exp-head" onclick="toggleExp(this)">
+            <div class="exp-head-l">
+                <span class="exp-num">01</span>
+                <span class="exp-icon">📸</span>
+                <div>
+                    <div class="exp-title">Photography</div>
+                    <div class="exp-sub">Through My Lens · Macro · Documentary · Color Grading</div>
+                </div>
+            </div>
+            <div class="exp-toggle">
+                <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+        </div>
+        <div class="exp-body">
+            <div class="slideshow-wrap">
+                <div class="slides-container" id="slidesContainer">
+                    <div class="slide active"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/9dde7f78-97f6-418e-9407-05f8d6372286.jpg" alt="Photo" loading="lazy"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/91940743-8572-43ef-b6d1-c423cb733801.jpg" alt="Photo" loading="lazy"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/f0e9620e-02e2-4bb9-b884-7e90f479dc5f.jpg" alt="Photo" loading="lazy"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/c1e69f41-ace2-4804-802c-970626a3c3ce.jpg" alt="Photo" loading="lazy"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/7b120018-59b6-4151-bb03-c3cfab7eb09f.jpg" alt="Photo" loading="lazy"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/b0c789f9-1c9f-4e34-b8bc-e053033b923b.jpg" alt="Photo" loading="lazy"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/1bd0c5d5-33ed-4873-bd55-344aed0c0652.jpg" alt="Photo" loading="lazy"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/009c91b2-fc5a-4834-b01c-43fb0f0bbbea.jpg" alt="Photo" loading="lazy"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/15b187a8-3e43-44b0-9f4b-bc46827f0e4c.jpg" alt="Photo" loading="lazy"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/43cc652f-5073-478d-a5fc-14609e987d70.jpg" alt="Photo" loading="lazy"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/db559804-77a1-4536-a0d2-bfb383466633.jpg" alt="Photo" loading="lazy"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/bf20caf0-963e-466e-839d-d2be016d0b1c.jpg" alt="Photo" loading="lazy"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/dc8a5a37-3672-44de-8456-291596eb0243.jpg" alt="Photo" loading="lazy"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/20250218_140450.jpg" alt="Photo" loading="lazy"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/20260113_185041.jpg" alt="Photo" loading="lazy"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/20250401_141928.jpg" alt="Photo" loading="lazy"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/20250401_142046.jpg" alt="Photo" loading="lazy"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/20250203_150222.jpg" alt="Photo" loading="lazy"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/20250401_142720(0).jpg" alt="Photo" loading="lazy"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/20250209_172648_resized.jpg" alt="Photo" loading="lazy"></div>
+                    <div class="slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/20250206_141357.jpg" alt="Photo" loading="lazy"></div>
+                </div>
+                <div class="slide-ui">
+                    <div class="slide-counter" id="slideCounter">01</div>
+                    <div class="slide-dots" id="slideDots"></div>
+                    <div class="slide-btns">
+                        <button class="slide-btn" onclick="slideNav(-1)">‹</button>
+                        <button class="slide-btn" onclick="slideNav(1)">›</button>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-caption">
+                <p>"Beauty doesn't announce itself. It waits — in the curve of a petal, the weight of a dying leaf, the universe inside an iris. My camera doesn't hunt. <em style="color:var(--gold);">It listens.</em>"</p>
+                <div style="margin-top:28px;">
+                    <a href="https://instagram.com/clickswithgg" target="_blank" class="btn-silk">See More on @clickswithgg ↗</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 02 FILMS -->
+    <div class="exp-section reveal" id="films-sec">
+        <div class="exp-head" onclick="toggleExp(this)">
+            <div class="exp-head-l">
+                <span class="exp-num">02</span>
+                <span class="exp-icon">🎬</span>
+                <div>
+                    <div class="exp-title">Cinematography & Films</div>
+                    <div class="exp-sub">Dhagar Dhun · Antim Darpan · Behind The Scenes</div>
+                </div>
+            </div>
+            <div class="exp-toggle">
+                <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+        </div>
+        <div class="exp-body">
+            <div class="exp-inner">
+                <div class="films-grid">
+                    <div class="film-card">
+                        <div class="film-embed">
+                            <iframe src="https://www.youtube.com/embed/n0E33P1wMfY" title="Dhagar Dhun" allowfullscreen loading="lazy"></iframe>
+                        </div>
+                        <div class="film-type">Documentary Film · 2026</div>
+                        <div class="film-title">Dhagar Dhun</div>
+                        <div class="film-tags">
+                            <span class="film-tag">Director</span>
+                            <span class="film-tag">Producer</span>
+                            <span class="film-tag">Writer</span>
+                            <span class="film-tag">Cinematographer</span>
+                            <span class="film-tag">Editor</span>
+                        </div>
+                        <p class="film-desc">A behind-the-scenes portrait of an all-women film crew set against Jammu's Dogri culture. Every word of dialogue written by me. Every light placed by me. Every cut intentional. Built entirely solo — this film showed me exactly what I am capable of.</p>
+                    </div>
+                    <div class="film-card">
+                        <div class="film-embed">
+                            <iframe src="https://www.youtube.com/embed/jhvH_LeT6k8" title="Antim Darpan" allowfullscreen loading="lazy"></iframe>
+                        </div>
+                        <div class="film-type">Radio Drama · 2026</div>
+                        <div class="film-title">Antim Darpan</div>
+                        <div class="film-tags">
+                            <span class="film-tag">Director</span>
+                            <span class="film-tag">Writer</span>
+                            <span class="film-tag">Producer</span>
+                            <span class="film-tag">Editor</span>
+                        </div>
+                        <p class="film-desc">A complete radio drama built on sound, voice, and writing alone — no visuals, no shortcuts. Immersion has to be earned. Building a world you cannot see is the hardest thing a storyteller can do. This is the project I am most quietly proud of.</p>
+                    </div>
+                </div>
+
+                <div class="bts-label">Behind The Scenes</div>
+                <div class="bts-reel">
+                    <div class="bts-cell">
+                        <img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/Snapchat-1260649486.jpg" alt="BTS" loading="lazy">
+                        <div class="bts-cell-ov"></div>
+                    </div>
+                    <div class="bts-cell">
+                        <img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/A001C00094_260327_646V.jpg" alt="BTS" loading="lazy">
+                        <div class="bts-cell-ov"></div>
+                    </div>
+                    <div class="bts-cell">
+                        <img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/A001C00095_260327_646V~2.jpg" alt="BTS" loading="lazy">
+                        <div class="bts-cell-ov"></div>
+                    </div>
+                    <div class="bts-cell">
+                        <img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/A001C00107_260327_646V~2.jpg" alt="BTS" loading="lazy">
+                        <div class="bts-cell-ov"></div>
+                    </div>
+                    <div class="bts-cell">
+                        <img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/A001C00109_260327_646V~2.jpg" alt="BTS" loading="lazy">
+                        <div class="bts-cell-ov"></div>
+                    </div>
+                    <div class="bts-cell video-cell">
+                        <video autoplay muted loop playsinline controls>
+                            <source src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/VN20260328_174538 (1).mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 03 JOURNALISM -->
+    <div class="exp-section reveal">
+        <div class="exp-head" onclick="toggleExp(this)">
+            <div class="exp-head-l">
+                <span class="exp-num">03</span>
+                <span class="exp-icon">🗞️</span>
+                <div>
+                    <div class="exp-title">Journalism</div>
+                    <div class="exp-sub">The Tribune · Published Work · Human Interest · Blogs With GG</div>
+                </div>
+            </div>
+            <div class="exp-toggle">
+                <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+        </div>
+        <div class="exp-body">
+            <div class="exp-inner">
+                <div class="exp-cards">
+                    <div class="exp-card">
+                        <div class="exp-org">The Tribune</div>
+                        <div class="exp-role">Journalism Intern · Amritsar Branch</div>
+                        <div class="exp-date">2025 — Present</div>
+                        <p class="exp-desc">I was told by a judge that I had the instincts of a natural anchor. I went home and decided to take that seriously. Now I'm in one of India's most respected newsrooms every day — learning the discipline, ethics, and craft of journalism not from textbooks but from the ground up. Research. Drafting. Editorial coordination. Fact-checking. Story development. Publication.</p>
+                        <div class="exp-quote">"Every day in this newsroom is a masterclass in what journalism actually is."</div>
+                    </div>
+                </div>
+                <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">Published Work · Bylines</div>
+                <div class="tribune-grid">
+                    <div class="trib-cell">
+                        <img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/IMG-20260619-WA0002.jpg" alt="Tribune" loading="lazy">
+                        <div class="trib-cap"><div class="trib-cap-tag">Published · The Tribune</div></div>
+                    </div>
+                    <div class="trib-cell">
+                        <img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/IMG-20260619-WA0000.jpg" alt="Tribune" loading="lazy">
+                        <div class="trib-cap"><div class="trib-cap-tag">Published · The Tribune</div></div>
+                    </div>
+                    <div class="trib-cell">
+                        <img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/IMG-20260412-WA0004.jpg" alt="Tribune" loading="lazy">
+                        <div class="trib-cap"><div class="trib-cap-tag">Published · The Tribune</div></div>
+                    </div>
+                    <div class="trib-cell">
+                        <img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/IMG-20260619-WA0001.jpg" alt="Tribune" loading="lazy">
+                        <div class="trib-cap"><div class="trib-cap-tag">Published · The Tribune</div></div>
+                    </div>
+                </div>
+                <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-top:52px;margin-bottom:0;">Blogs With GG</div>
+                <div class="blogs-duo">
+                    <a href="https://teawithggblog.wordpress.com/" target="_blank" class="blog-tile">
+                        <span class="blog-arrow">↗</span>
+                        <div class="blog-type">Human Interest · Journalism</div>
+                        <div class="blog-name">Blogs With GG</div>
+                        <p class="blog-desc">Human interest stories, journalistic writing, cultural narratives, and the world seen through a reporter's instinct. This is where I report.</p>
+                    </a>
+                    <a href="https://teawithgg.wordpress.com/" target="_blank" class="blog-tile">
+                        <span class="blog-arrow">↗</span>
+                        <div class="blog-type">Personal · Creative · Essays</div>
+                        <div class="blog-name">Blogs With GG</div>
+                        <p class="blog-desc">Personal essays, reflections, and the intimate exploratory side of my voice. Two polar styles. One writer. This is where I breathe.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 04 EVENT MANAGEMENT -->
+    <div class="exp-section reveal">
+        <div class="exp-head" onclick="toggleExp(this)">
+            <div class="exp-head-l">
+                <span class="exp-num">04</span>
+                <span class="exp-icon">🎪</span>
+                <div>
+                    <div class="exp-title">Event Management</div>
+                    <div class="exp-sub">Sacred Amritsar · Teamwork Arts · Stage Hosting</div>
+                </div>
+            </div>
+            <div class="exp-toggle">
+                <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+        </div>
+        <div class="exp-body">
+            <div class="exp-inner">
+                <div class="exp-cards">
+                    <div class="exp-card">
+                        <div class="exp-org">Teamwork Arts · Sacred Amritsar</div>
+                        <div class="exp-role">Delegate Management Volunteer</div>
+                        <div class="exp-date">20–22 February 2026</div>
+                        <p class="exp-desc">A three-day international cultural festival with hundreds of delegates from across the world. I personally managed 13+ delegates — artists, performers, and international guests — serving as their first point of contact, handling hospitality, logistics, and real-time problem solving throughout. Artists in attendance included Usha Uthup and Kailash Kher. I used to doubt my ability to give people a satisfactory experience. Sacred Amritsar erased that doubt permanently.</p>
+                        <div class="exp-quote">"By the final evening, every single delegate I personally managed asked for me by name and told my supervisor I was the best delegate manager they had ever encountered. That is not luck. That is what I do."</div>
+                    </div>
+                    <div class="exp-card">
+                        <div class="exp-org">BBK DAV Women's College</div>
+                        <div class="exp-role">Lead Event Host & Stage Anchor</div>
+                        <div class="exp-date">2024 — Present · Amritsar</div>
+                        <p class="exp-desc">Led 15 performers across 4 major college events — 2 fresher welcomes and 2 farewell ceremonies — as lead anchor and hosting coordinator. A great event doesn't just happen. It is held together by someone who knows exactly what they are doing.</p>
+                    </div>
+                </div>
+                <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--blush);margin-bottom:20px;">Sacred Amritsar · The Event</div>
+                <div class="sacred-layout">
+                    <div class="sacred-main">
+                        <img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/20260220_135842.jpg" alt="Sacred Amritsar" loading="lazy">
+                    </div>
+                    <div class="sacred-side">
+                        <div class="sacred-side-item">
+                            <img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/20260220_202313.jpg" alt="Sacred Amritsar" loading="lazy">
+                        </div>
+                        <div class="sacred-side-item">
+                            <img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/75dea88e-4b55-4b21-ad3b-331e95e8b67a.jpg" alt="Sacred Amritsar" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 05 PUBLIC SPEAKING -->
+    <div class="exp-section reveal">
+        <div class="exp-head" onclick="toggleExp(this)">
+            <div class="exp-head-l">
+                <span class="exp-num">05</span>
+                <span class="exp-icon">🎤</span>
+                <div>
+                    <div class="exp-title">Public Speaking</div>
+                    <div class="exp-sub">Debate · Keynote · Stage Hosting · Performance</div>
+                </div>
+            </div>
+            <div class="exp-toggle">
+                <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+        </div>
+        <div class="exp-body">
+            <div class="exp-inner">
+                <div class="speaking-layout">
+                    <div>
+                        <p class="speaking-big">The best speakers don't perform. They make every person in the room feel like the words were written <em>for them alone.</em></p>
+                        <p class="speaking-body">That is what I have been doing — on stages, in debates, at ceremonies, in rooms of hundreds — since before I had a name for it. Available for speaking engagements, panel discussions, event hosting, and keynote presentations.</p>
+                        <p class="speaking-body" style="margin-top:14px;">Based in Amritsar. Open to travel. Open to the right conversation.</p>
+                        <div style="margin-top:36px;">
+                            <a href="#contact" class="btn-silk">Book Me To Speak</a>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="topics-ul">
+                            <li class="topic-row"><span class="topic-n">01</span><span class="topic-nm">Spirituality & Inner Life</span></li>
+                            <li class="topic-row"><span class="topic-n">02</span><span class="topic-nm">Womanhood & Feminism</span></li>
+                            <li class="topic-row"><span class="topic-n">03</span><span class="topic-nm">Logical Fallacies & Critical Thinking</span></li>
+                            <li class="topic-row"><span class="topic-n">04</span><span class="topic-nm">Motivation & Personal Narrative</span></li>
+                            <li class="topic-row"><span class="topic-n">05</span><span class="topic-nm">Culture, Identity & Storytelling</span></li>
+                            <li class="topic-row"><span class="topic-n">06</span><span class="topic-nm">Journalism & Media Today</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 06 AWARDS -->
+    <div class="exp-section reveal" id="awards-sec">
+        <div class="exp-head" onclick="toggleExp(this)">
+            <div class="exp-head-l">
+                <span class="exp-num">06</span>
+                <span class="exp-icon">🏆</span>
+                <div>
+                    <div class="exp-title">Awards & Recognition</div>
+                    <div class="exp-sub">10+ Awards · Speaking · Media · Performance</div>
+                </div>
+            </div>
+            <div class="exp-toggle">
+                <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+        </div>
+        <div class="exp-body">
+            <div class="exp-inner">
+                <p class="awards-q">"Recognition is not the goal. But it is a record."</p>
+                <div class="awards-cats">
+                    <div>
+                        <div class="award-cat-title">🗣️ Speaking & Debate</div>
+                        <ul class="award-list">
+                            <li class="award-item"><span class="award-badge">1st Prize</span><br>Tatkalik Bhashan Pratiyogita — Prantiya Sanskriti Mahotsav (2022–23)</li>
+                            <li class="award-item"><span class="award-badge">2nd Prize</span><br>Tatkalik Bhashan Pratiyogita — Uttar Shetr Sanskriti Mahotsav (2022–23)</li>
+                            <li class="award-item"><span class="award-badge">Representative</span><br>BBK DAV at GNDU Youth Festival 2024 — Debate</li>
+                            <li class="award-item"><span class="award-badge">Appreciation Award</span><br>Speech on Shaheed Bhagat Singh's Birthday — Police Commissionerate of Amritsar</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="award-cat-title">🎙️ Media & Broadcast</div>
+                        <ul class="award-list">
+                            <li class="award-item"><span class="award-badge">1st Prize</span><br>Radio Jockey — BBK Media Fest</li>
+                            <li class="award-item"><span class="award-badge">Appreciation Award</span><br>News Reading — BBK Media Fest</li>
+                            <li class="award-item"><span class="award-badge">3rd Prize</span><br>Piece to Camera — BBK Media Fest</li>
+                            <li class="award-item"><span class="award-badge">3rd Prize</span><br>Interview Seeking — BBK Media Fest</li>
+                            <li class="award-item"><span class="award-badge">2nd Prize</span><br>Lit-Hit & PPT Competition</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="award-cat-title">🎭 Performance & Creative</div>
+                        <ul class="award-list">
+                            <li class="award-item"><span class="award-badge">1st Prize</span><br>Talent Hunt — Mime Act Competition</li>
+                            <li class="award-item"><span class="award-badge">1st Prize</span><br>Vibhagiya Ghanit-Vigyan Mela (2013–2024)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ===== ONLINE ===== -->
+<div class="online-strip reveal">
+    <div class="eyebrow">Find Me Online</div>
+    <h2 class="sec-title">The full <em>picture.</em></h2>
+    <div class="online-trio">
+        <a href="https://instagram.com/clickswithgg" target="_blank" class="online-tile">
+            <div class="online-platform">Instagram · Photography & Color Grading</div>
+            <div class="online-handle">@clickswithgg</div>
+            <p class="online-desc">Where color tells the story. Photography, color grading, before and afters, and the eye behind the lens.</p>
+        </a>
+        <a href="https://instagram.com/newswithgg" target="_blank" class="online-tile">
+            <div class="online-platform">Instagram · Journalism</div>
+            <div class="online-handle">@newswithgg</div>
+            <p class="online-desc">Journalism in real time — stories, reporting, and the world seen through a journalist's instinct.</p>
+        </a>
+        <a href="https://instagram.com/irajnicantdothis" target="_blank" class="online-tile">
+            <div class="online-platform">Instagram · Internship Vlogs</div>
+            <div class="online-handle">@irajnicantdothis</div>
+            <p class="online-desc">Raw, unfiltered internship vlogs from inside The Tribune newsroom. The real experience of becoming a journalist.</p>
+        </a>
+    </div>
+</div>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+    <div class="contact-inner reveal">
+        <div class="eyebrow" style="justify-content:center;">Get In Touch</div>
+        <h2 class="contact-h">If you've made it here,<br>you already know.<br><em>Let's make something that matters.</em></h2>
+        <p class="contact-sub">Open to journalism collaborations, cinematography projects, photography commissions, speaking engagements, and event hosting. I bring precision, presence, and a genuine belief that the work matters.</p>
+        <a href="mailto:1996gungunarora@gmail.com" class="contact-email">1996gungunarora@gmail.com</a>
+        <div class="contact-row">
+            <div><div class="c-label">Phone</div><div class="c-val">+91 9872319243</div></div>
+            <div><div class="c-label">Based In</div><div class="c-val">Amritsar, Punjab</div></div>
+            <div><div class="c-label">Available For</div><div class="c-val">Work & Collaborations</div></div>
+        </div>
+        <div class="contact-ctas">
+            <a href="https://instagram.com/clickswithgg"    target="_blank" class="btn-silk">@clickswithgg</a>
+            <a href="https://instagram.com/newswithgg"      target="_blank" class="btn-linen">@newswithgg</a>
+            <a href="https://instagram.com/irajnicantdothis" target="_blank" class="btn-linen">@irajnicantdothis</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="footer-logo">GUNGUN ARORA</div>
+    <div class="footer-copy">© 2026 · Journalist · Cinematographer · Visual Storyteller · Amritsar</div>
+</footer>
+
+<script>
+// CURSOR
+const cur  = document.getElementById('cursor');
+const cring = document.getElementById('cring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cur.style.left = mx + 'px';
+    cur.style.top  = my + 'px';
+});
+(function animRing() {
+    rx += (mx - rx) * 0.13;
+    ry += (my - ry) * 0.13;
+    cring.style.left = rx + 'px';
+    cring.style.top  = ry + 'px';
+    requestAnimationFrame(animRing);
+})();
+document.querySelectorAll('a,button,[onclick]').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        cur.style.transform = 'translate(-50%,-50%) scale(3)';
+        cring.style.transform = 'translate(-50%,-50%) scale(1.5)';
+        cring.style.borderColor = 'rgba(204,125,150,0.55)';
+    });
+    el.addEventListener('mouseleave', () => {
+        cur.style.transform = 'translate(-50%,-50%) scale(1)';
+        cring.style.transform = 'translate(-50%,-50%) scale(1)';
+        cring.style.borderColor = 'rgba(200,151,58,0.4)';
+    });
+});
+
+// NAV SCROLL
+window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// MOBILE MENU
+function toggleMenu() {
+    document.getElementById('burger').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMenu() {
+    document.getElementById('burger').classList.remove('open');
+    document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// EXPAND SECTIONS
+function toggleExp(header) {
+    const body = header.nextElementSibling;
+    const open = body.classList.contains('open');
+    header.classList.toggle('active', !open);
+    body.classList.toggle('open', !open);
+}
+
+// TIMELINE
+function toggleTL(card) {
+    const ex = card.querySelector('.tl-expand');
+    if (ex) ex.classList.toggle('open');
+}
+
+// SLIDESHOW
+let curSlide = 0;
+const allSlides = document.querySelectorAll('.slide');
+const total = allSlides.length;
+
+function buildDots() {
+    const d = document.getElementById('slideDots');
+    if (!d) return;
+    d.innerHTML = '';
+    allSlides.forEach((_,i) => {
+        const dot = document.createElement('div');
+        dot.className = 'slide-dot' + (i===0?' active':'');
+        dot.onclick = () => goSlide(i);
+        d.appendChild(dot);
+    });
+}
+
+function goSlide(n) {
+    allSlides[curSlide].classList.remove('active');
+    document.querySelectorAll('.slide-dot')[curSlide]?.classList.remove('active');
+    curSlide = (n + total) % total;
+    allSlides[curSlide].classList.add('active');
+    document.querySelectorAll('.slide-dot')[curSlide]?.classList.add('active');
+    const c = document.getElementById('slideCounter');
+    if (c) c.textContent = String(curSlide+1).padStart(2,'0');
+}
+
+function slideNav(dir) { goSlide(curSlide + dir); }
+
+buildDots();
+setInterval(() => goSlide(curSlide + 1), 5500);
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft')  slideNav(-1);
+    if (e.key === 'ArrowRight') slideNav(1);
+});
+
+// REVEAL ON SCROLL
+const revObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+// TIMELINE REVEAL
+const tlObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.tl-item').forEach((el,i) => {
+    el.style.transitionDelay = (i * 0.08) + 's';
+    tlObs.observe(el);
+});
+</script>
+</body>
+</html>
