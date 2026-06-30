@@ -392,108 +392,137 @@
         }
         .sec-title em { font-style:italic; color:var(--gold); }
 
-        /* ===== ABOUT ===== */
-        #about {
-            padding:140px 60px;
-            background:linear-gradient(160deg, var(--bg) 0%, var(--amethyst-d) 50%, var(--bg) 100%);
-            position:relative; overflow:hidden;
-        }
-        #about::before {
-            content:''; position:absolute; top:-200px; right:-200px;
-            width:600px; height:600px; border-radius:50%;
-            background:radial-gradient(circle, rgba(74,21,96,0.2) 0%, transparent 70%);
-            pointer-events:none;
-        }
-        .about-top-row {
-            display:grid; grid-template-columns:420px 1fr;
-            gap:80px; align-items:start; margin-bottom:80px;
-        }
-        .about-visual { position:relative; }
-        .about-img-wrap { position:relative; width:100%; }
-        .about-img {
-            width:100%; aspect-ratio:3/4; object-fit:cover; object-position:top;
-            display:block; filter:saturate(0.85) contrast(1.1) sepia(0.08);
-            transition:filter 0.7s ease;
-        }
-        .about-img:hover { filter:saturate(1.05) contrast(1.1) sepia(0); }
-        .about-img-fade {
-            position:absolute; inset:0;
-            background:linear-gradient(to bottom, transparent 55%, rgba(13,4,16,0.5));
-            pointer-events:none;
-        }
-        .about-border {
-            position:absolute; top:18px; left:-18px; right:18px; bottom:-18px;
-            border:1px solid rgba(200,151,58,0.18); pointer-events:none;
-            transition:all 0.6s cubic-bezier(0.16,1,0.3,1);
-        }
-        .about-img-wrap:hover .about-border { top:12px; left:-12px; right:12px; bottom:-12px; border-color:rgba(200,151,58,0.45); }
-        .corner { position:absolute; width:18px; height:18px; }
-        .corner.tl { top:-1px; left:-1px; border-top:2px solid var(--gold); border-left:2px solid var(--gold); }
-        .corner.tr { top:-1px; right:-1px; border-top:2px solid var(--blush); border-right:2px solid var(--blush); }
-        .corner.bl { bottom:-1px; left:-1px; border-bottom:2px solid var(--wine-l); border-left:2px solid var(--wine-l); }
-        .corner.br { bottom:-1px; right:-1px; border-bottom:2px solid var(--gold); border-right:2px solid var(--gold); }
-        .about-caption { margin-top:24px; display:flex; align-items:center; gap:12px; }
-        .about-caption-txt { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--text-dim); white-space:nowrap; }
-        .about-caption-line { flex:1; height:1px; background:linear-gradient(to right, rgba(200,151,58,0.2), transparent); }
-        .about-text-col { padding-top:12px; }
-        .para { font-size:15px; line-height:2; color:var(--text); opacity:0.83; margin-bottom:20px; }
-        .para strong { color:var(--gold); font-weight:400; }
-        .para .bls { color:var(--blush-l); }
-        .para .wine { color:var(--wine-l); }
-        .pull-quote {
-            margin:44px 0; padding:28px 36px;
-            border-left:2px solid var(--gold);
-            background:linear-gradient(135deg, rgba(74,21,96,0.15), rgba(107,18,40,0.08));
-            position:relative;
-        }
-        .pull-quote::before {
-            content:'"'; position:absolute; top:-16px; left:28px;
-            font-family:'Cormorant Garamond',serif; font-size:72px;
-            color:var(--gold); opacity:0.18; line-height:1;
-        }
-        .pull-quote p { font-family:'Cormorant Garamond',serif; font-size:20px; font-style:italic; color:var(--blush-l); line-height:1.7; }
+     /* ===== ABOUT — STICKY PHOTO SCROLL ===== */
+#about {
+    background: linear-gradient(160deg, var(--bg) 0%, var(--amethyst-d) 50%, var(--bg) 100%);
+    position: relative;
+    overflow: hidden;
+}
+#about::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,21,96,0.2) 0%, transparent 70%);
+    pointer-events: none;
+}
 
-        /* ABOUT BOTTOM FULL WIDTH */
-        .about-bottom-full { width:100%; }
-        .about-stats {
-            display:grid; grid-template-columns:repeat(4,1fr);
-            border:1px solid rgba(200,151,58,0.09); margin-bottom:60px;
-        }
-        .stat-box {
-            padding:40px 32px; border-right:1px solid rgba(200,151,58,0.09);
-            transition:background 0.4s; position:relative; overflow:hidden;
-        }
-        .stat-box:last-child { border-right:none; }
-        .stat-box::before {
-            content:''; position:absolute; inset:0;
-            background:linear-gradient(135deg, rgba(74,21,96,0.2), rgba(107,18,40,0.1));
-            opacity:0; transition:opacity 0.4s;
-        }
-        .stat-box:hover::before { opacity:1; }
-        .stat-n {
-            font-family:'Cormorant Garamond',serif; font-size:64px; font-weight:300;
-            background:linear-gradient(135deg, var(--gold), var(--blush));
-            -webkit-background-clip:text; -webkit-text-fill-color:transparent; line-height:1;
-        }
-        .stat-l { font-size:12px; letter-spacing:1px; color:var(--text-dim); margin-top:10px; line-height:1.5; }
-        .skills-wrap { padding:48px 0; border-top:1px solid rgba(200,151,58,0.09); margin-bottom:48px; }
-        .skills-title { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-bottom:20px; }
-        .skills-grid { display:flex; flex-wrap:wrap; gap:10px; }
-        .skill-tag {
-            padding:8px 20px; border:1px solid rgba(200,151,58,0.18);
-            font-size:11px; letter-spacing:1px; color:var(--text); border-radius:24px;
-            background:rgba(200,151,58,0.03); transition:all 0.3s;
-        }
-        .skill-tag:hover { border-color:var(--gold); color:var(--gold); background:rgba(200,151,58,0.08); }
-        .inspo-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
-        .inspo-card {
-            padding:28px 24px; background:rgba(74,21,96,0.12);
-            border:1px solid rgba(200,151,58,0.1); transition:all 0.4s;
-        }
-        .inspo-card:hover { background:rgba(74,21,96,0.22); border-color:rgba(200,151,58,0.25); transform:translateY(-2px); }
-        .inspo-role { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--blush); margin-bottom:8px; }
-        .inspo-name { font-family:'Cormorant Garamond',serif; font-size:20px; color:var(--parchment); margin-bottom:6px; }
-        .inspo-desc { font-size:12px; line-height:1.7; opacity:0.62; }
+/* The whole about section is one big flex row */
+.about-sticky-wrap {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 80px;
+    align-items: start;
+    padding: 140px 60px 100px;
+}
+
+/* LEFT COLUMN — sticky photo that follows scroll */
+.about-sticky-left {
+    position: sticky;
+    top: 100px; /* sits just below nav */
+    height: fit-content;
+}
+
+.about-img-wrap { position: relative; width: 100%; }
+.about-img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    filter: saturate(0.85) contrast(1.1) sepia(0.08);
+    transition: filter 0.7s ease;
+}
+.about-img:hover { filter: saturate(1.05) contrast(1.1) sepia(0); }
+.about-img-fade {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 55%, rgba(13,4,16,0.5));
+    pointer-events: none;
+}
+.about-border {
+    position: absolute;
+    top: 18px; left: -18px; right: 18px; bottom: -18px;
+    border: 1px solid rgba(200,151,58,0.18);
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.about-img-wrap:hover .about-border { 
+    top: 12px; left: -12px; right: 12px; bottom: -12px; 
+    border-color: rgba(200,151,58,0.45); 
+}
+.corner { position: absolute; width: 18px; height: 18px; }
+.corner.tl { top:-1px; left:-1px; border-top:2px solid var(--gold); border-left:2px solid var(--gold); }
+.corner.tr { top:-1px; right:-1px; border-top:2px solid var(--blush); border-right:2px solid var(--blush); }
+.corner.bl { bottom:-1px; left:-1px; border-bottom:2px solid var(--wine-l); border-left:2px solid var(--wine-l); }
+.corner.br { bottom:-1px; right:-1px; border-bottom:2px solid var(--gold); border-right:2px solid var(--gold); }
+.about-caption { margin-top: 24px; display: flex; align-items: center; gap: 12px; }
+.about-caption-txt { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--text-dim); white-space:nowrap; }
+.about-caption-line { flex:1; height:1px; background:linear-gradient(to right, rgba(200,151,58,0.2), transparent); }
+
+/* RIGHT COLUMN — all scrolling content */
+.about-right-col {
+    padding-top: 12px;
+    padding-bottom: 100px;
+}
+
+/* Stats, skills, inspo all live inside right col now — full width of right col */
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border: 1px solid rgba(200,151,58,0.09);
+    margin: 60px 0;
+}
+.stat-box {
+    padding: 32px 24px;
+    border-right: 1px solid rgba(200,151,58,0.09);
+    border-bottom: 1px solid rgba(200,151,58,0.09);
+    transition: background 0.4s;
+    position: relative;
+    overflow: hidden;
+}
+.stat-box:nth-child(even) { border-right: none; }
+.stat-box:nth-child(3),
+.stat-box:nth-child(4) { border-bottom: none; }
+.stat-box::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(74,21,96,0.2), rgba(107,18,40,0.1));
+    opacity: 0; transition: opacity 0.4s;
+}
+.stat-box:hover::before { opacity:1; }
+.stat-n {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px; font-weight: 300;
+    background: linear-gradient(135deg, var(--gold), var(--blush));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    line-height: 1;
+}
+.stat-l { font-size:11px; letter-spacing:1px; color:var(--text-dim); margin-top:8px; line-height:1.5; }
+
+.skills-wrap { padding: 0 0 48px; border-top: 1px solid rgba(200,151,58,0.09); padding-top: 48px; margin-bottom: 48px; }
+.skills-title { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-bottom:20px; }
+.skills-grid { display:flex; flex-wrap:wrap; gap:10px; }
+.skill-tag {
+    padding: 8px 20px; border: 1px solid rgba(200,151,58,0.18);
+    font-size: 11px; letter-spacing:1px; color:var(--text);
+    border-radius: 24px; background: rgba(200,151,58,0.03); transition: all 0.3s;
+}
+.skill-tag:hover { border-color:var(--gold); color:var(--gold); background:rgba(200,151,58,0.08); }
+
+.inspo-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+.inspo-card { padding:28px 24px; background:rgba(74,21,96,0.12); border:1px solid rgba(200,151,58,0.1); transition:all 0.4s; }
+.inspo-card:hover { background:rgba(74,21,96,0.22); border-color:rgba(200,151,58,0.25); transform:translateY(-2px); }
+.inspo-role { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--blush); margin-bottom:8px; }
+.inspo-name { font-family:'Cormorant Garamond',serif; font-size:20px; color:var(--parchment); margin-bottom:6px; }
+.inspo-desc { font-size:12px; line-height:1.7; opacity:0.62; }
+
+/* Mobile */
+@media (max-width: 900px) {
+    .about-sticky-wrap { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
+    .about-sticky-left { position: static; }
+    .about-stats { grid-template-columns: repeat(2,1fr); }
+    .inspo-grid { grid-template-columns: 1fr; }
+}
 
         /* ===== PHILOSOPHY ===== */
         #philosophy {
@@ -682,12 +711,44 @@
         .film-tags { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:14px; }
         .film-tag { font-size:10px; letter-spacing:2px; padding:3px 12px; border:1px solid rgba(200,151,58,0.18); color:var(--gold); text-transform:uppercase; border-radius:20px; }
         .film-desc { font-size:14px; line-height:1.9; opacity:0.7; }
-        .bts-label { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--blush); margin:52px 0 20px; }
-        .bts-reel { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
-        .bts-cell { position:relative; overflow:hidden; background:var(--bg3); }
-        .bts-cell img,.bts-cell video { width:100%; height:auto; min-height:180px; object-fit:cover; display:block; transition:transform 0.8s cubic-bezier(0.16,1,0.3,1); }
-        .bts-cell.full-video { grid-column:span 3; }
-        .bts-cell.full-video video { width:100%; height:auto; max-height:560px; object-fit:contain; background:#000; min-height:unset; }
+       /* BTS VIDEOS — FIXED */
+.bts-label { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--blush); margin:52px 0 20px; }
+
+.bts-reel { 
+    display: flex;
+    flex-direction: column;
+    gap: 12px; 
+}
+
+.bts-cell { 
+    position: relative; 
+    overflow: hidden; 
+    background: #000;
+    width: 100%;
+}
+
+.bts-cell video { 
+    width: 100%; 
+    height: auto;
+    min-height: 300px;
+    max-height: 600px;
+    object-fit: contain;
+    display: block; 
+    background: #000;
+}
+
+.bts-cell img {
+    width: 100%; 
+    height: auto;
+    object-fit: cover; 
+    display: block; 
+    transition: transform 0.8s cubic-bezier(0.16,1,0.3,1); 
+}
+
+/* Remove the grid span stuff since we're using flex now */
+.bts-cell.full-video { 
+    width: 100%;
+}
 
         /* TRIBUNE */
         .tribune-full { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:44px; }
@@ -1130,15 +1191,20 @@
     </div>
 </div>
 
-<!-- ABOUT -->
+<!-- ===== ABOUT ===== -->
 <section id="about">
-    <div class="about-top-row">
-        <div class="about-visual reveal">
+    <div class="about-sticky-wrap">
+
+        <!-- LEFT: Sticky headshot — stays on screen while right col scrolls -->
+        <div class="about-sticky-left reveal">
             <div class="about-img-wrap">
-                <img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/Screenshot_20250316_180712_Photos.jpg" alt="Gungun Arora" class="about-img">
+                <img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/Screenshot_20250316_180712_Photos.jpg" 
+                     alt="Gungun Arora" class="about-img">
                 <div class="about-img-fade"></div>
-                <div class="corner tl"></div><div class="corner tr"></div>
-                <div class="corner bl"></div><div class="corner br"></div>
+                <div class="corner tl"></div>
+                <div class="corner tr"></div>
+                <div class="corner bl"></div>
+                <div class="corner br"></div>
                 <div class="about-border"></div>
             </div>
             <div class="about-caption">
@@ -1146,45 +1212,96 @@
                 <div class="about-caption-line"></div>
             </div>
         </div>
-        <div class="about-text-col">
+
+        <!-- RIGHT: All text content scrolls normally -->
+        <div class="about-right-col">
+
             <div class="eyebrow reveal">About</div>
             <h2 class="sec-title reveal">There is a kind of person<br>who walks into a room<br>and immediately <em>reads it.</em></h2>
+
             <p class="para reveal">I have always been that person. Not because I was taught to — but because <strong>attention is the most natural thing I do.</strong> I sense what hides beneath facades. I read emotions that people don't say out loud. And I match myself to the room not to blend in — but to <span class="bls">make something real happen.</span></p>
+
             <p class="para reveal reveal-d1">I grew up between Amritsar and London — two cities, two cultures, two entirely different ways of moving through the world. That distance gave me two lenses: one that sees with precision, one that sees with warmth. <span class="wine">Both live in everything I create.</span></p>
+
             <div class="pull-quote reveal reveal-d2">
                 <p>A debate judge — someone whose job was to find weakness — told me I had the precision of a natural anchor and the instincts of a real journalist. I didn't celebrate. I got to work.</p>
             </div>
+
             <p class="para reveal">I'm a journalist interning at The Tribune, a cinematographer who has directed two complete works entirely solo, a photographer who shoots silence, a public speaker who has held stages, and a visual storyteller who believes every frame, every word, and every room has a story waiting to be told <strong>right.</strong></p>
+
             <p class="para reveal reveal-d1">My thought process is simple — <strong>I don't give up and I don't take no for an answer.</strong> If there's a solution I find it. If there isn't — I create one. I believe in fighting for the truth even when I'm the only one fighting for it. I transform empathy into action. <span class="bls">I thrive in the space where craft meets urgency.</span></p>
+
             <p class="para reveal reveal-d2">Amritsar is not just where I live — it is what I see through. <span class="wine">A city of extraordinary cultural and spiritual richness</span> that lives in every street, every voice, every evening light. It shows up in my photography, my journalism, my cinematography. Amritsar is in the texture of everything I make.</p>
-        </div>
-    </div>
-    <div class="about-bottom-full">
-        <div class="about-stats reveal">
-            <div class="stat-box"><div class="stat-n" data-target="13">0</div><div class="stat-l">Delegates Personally Managed · Sacred Amritsar</div></div>
-            <div class="stat-box"><div class="stat-n" data-target="2">0</div><div class="stat-l">Original Works Directed, Produced & Edited Solo</div></div>
-            <div class="stat-box"><div class="stat-n" data-target="10">0</div><div class="stat-l">Awards Across Debate, Media & Performance</div></div>
-            <div class="stat-box"><div class="stat-n" data-target="4">0</div><div class="stat-l">Major Events Hosted as Lead Anchor</div></div>
-        </div>
-        <div class="skills-wrap reveal reveal-d1">
-            <div class="skills-title">Core Skills</div>
-            <div class="skills-grid">
-                <span class="skill-tag">News Reporting</span><span class="skill-tag">Cinematography</span>
-                <span class="skill-tag">Photography</span><span class="skill-tag">Color Grading</span>
-                <span class="skill-tag">Video Editing</span><span class="skill-tag">Public Speaking</span>
-                <span class="skill-tag">Scriptwriting</span><span class="skill-tag">Radio Drama</span>
-                <span class="skill-tag">Event Management</span><span class="skill-tag">Delegate Management</span>
-                <span class="skill-tag">Stage Hosting</span><span class="skill-tag">Debate</span>
-                <span class="skill-tag">Content Creation</span><span class="skill-tag">Social Media Strategy</span>
-                <span class="skill-tag">AI Fluency</span><span class="skill-tag">Editorial Writing</span>
-                <span class="skill-tag">Research & Fact-Checking</span><span class="skill-tag">Audience Engagement</span>
+
+            <!-- STATS — 2x2 grid inside right col -->
+            <div class="about-stats reveal">
+                <div class="stat-box">
+                    <div class="stat-n" data-target="13">0</div>
+                    <div class="stat-l">Delegates Personally Managed · Sacred Amritsar</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-n" data-target="2">0</div>
+                    <div class="stat-l">Original Works Directed, Produced & Edited Solo</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-n" data-target="10">0</div>
+                    <div class="stat-l">Awards Across Debate, Media & Performance</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-n" data-target="4">0</div>
+                    <div class="stat-l">Major Events Hosted as Lead Anchor</div>
+                </div>
             </div>
-        </div>
-        <div class="inspo-grid reveal reveal-d2">
-            <div class="inspo-card"><div class="inspo-role">Filmmaker I Study</div><div class="inspo-name">Sanjay Leela Bhansali</div><p class="inspo-desc">For the tenacious, scrupulous attention to detail — a set perfect to the nth degree.</p></div>
-            <div class="inspo-card"><div class="inspo-role">Filmmaker I Study</div><div class="inspo-name">Aditya Dhar</div><p class="inspo-desc">For the attention to details the audience might never consciously notice — but always feel.</p></div>
-            <div class="inspo-card"><div class="inspo-role">Journalist I Follow</div><div class="inspo-name">Palki Sharma Upadhyay</div><p class="inspo-desc">Vantage on First Post. For the precision, clarity, and unwavering confidence of her voice.</p></div>
-            <div class="inspo-card"><div class="inspo-role">Writer I Follow</div><div class="inspo-name">Zsolt Hermann</div><p class="inspo-desc">His blog on Medium — for the depth of thought and the clarity of philosophical expression.</p></div>
+
+            <!-- SKILLS -->
+            <div class="skills-wrap reveal reveal-d1">
+                <div class="skills-title">Core Skills</div>
+                <div class="skills-grid">
+                    <span class="skill-tag">News Reporting</span>
+                    <span class="skill-tag">Cinematography</span>
+                    <span class="skill-tag">Photography</span>
+                    <span class="skill-tag">Color Grading</span>
+                    <span class="skill-tag">Video Editing</span>
+                    <span class="skill-tag">Public Speaking</span>
+                    <span class="skill-tag">Scriptwriting</span>
+                    <span class="skill-tag">Radio Drama</span>
+                    <span class="skill-tag">Event Management</span>
+                    <span class="skill-tag">Delegate Management</span>
+                    <span class="skill-tag">Stage Hosting</span>
+                    <span class="skill-tag">Debate</span>
+                    <span class="skill-tag">Content Creation</span>
+                    <span class="skill-tag">Social Media Strategy</span>
+                    <span class="skill-tag">AI Fluency</span>
+                    <span class="skill-tag">Editorial Writing</span>
+                    <span class="skill-tag">Research & Fact-Checking</span>
+                    <span class="skill-tag">Audience Engagement</span>
+                </div>
+            </div>
+
+            <!-- INSPIRATIONS -->
+            <div class="inspo-grid reveal reveal-d2">
+                <div class="inspo-card">
+                    <div class="inspo-role">Filmmaker I Study</div>
+                    <div class="inspo-name">Sanjay Leela Bhansali</div>
+                    <p class="inspo-desc">For the tenacious, scrupulous attention to detail — a set perfect to the nth degree.</p>
+                </div>
+                <div class="inspo-card">
+                    <div class="inspo-role">Filmmaker I Study</div>
+                    <div class="inspo-name">Aditya Dhar</div>
+                    <p class="inspo-desc">For the attention to details the audience might never consciously notice — but always feel.</p>
+                </div>
+                <div class="inspo-card">
+                    <div class="inspo-role">Journalist I Follow</div>
+                    <div class="inspo-name">Palki Sharma Upadhyay</div>
+                    <p class="inspo-desc">Vantage on First Post. For the precision, clarity, and unwavering confidence of her voice.</p>
+                </div>
+                <div class="inspo-card">
+                    <div class="inspo-role">Writer I Follow</div>
+                    <div class="inspo-name">Zsolt Hermann</div>
+                    <p class="inspo-desc">His blog on Medium — for the depth of thought and the clarity of philosophical expression.</p>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
