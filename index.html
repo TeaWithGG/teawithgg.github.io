@@ -82,10 +82,7 @@
             gap: 24px;
             transition: opacity 1.2s ease, visibility 1.2s ease;
         }
-        #preloader.hide {
-            opacity: 0;
-            visibility: hidden;
-        }
+        #preloader.hide { opacity: 0; visibility: hidden; }
         .pre-hindi {
             font-family: 'EB Garamond', serif;
             font-size: clamp(28px, 4vw, 52px);
@@ -113,8 +110,7 @@
             animation: preReveal 1s ease forwards 2s;
         }
         .pre-line {
-            width: 0;
-            height: 1px;
+            width: 0; height: 1px;
             background: linear-gradient(to right, transparent, var(--gold), transparent);
             animation: preLine 1.5s ease forwards 1.5s;
         }
@@ -145,7 +141,7 @@
             border-bottom: 1px solid rgba(200,151,58,0.07);
         }
 
-        /* SVG LOGO */
+        /* FIXED LOGO - wider viewBox to prevent cutoff */
         .nav-logo { text-decoration: none; display: flex; align-items: center; }
         .logo-svg { height: 48px; width: auto; }
 
@@ -210,14 +206,8 @@
                 var(--bg) 35%,
                 var(--wine-d) 70%,
                 var(--bg) 100%);
-            animation: heroGradShift 12s ease infinite alternate;
-        }
-        @keyframes heroGradShift {
-            0%   { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
         }
 
-        /* Ken Burns BG gallery */
         .hero-gallery-bg {
             position: absolute;
             inset: 0;
@@ -231,8 +221,7 @@
         }
         .hero-bg-slide.active { opacity: 0.12; }
         .hero-bg-slide img {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             object-fit: cover;
             animation: kenBurns 12s ease infinite alternate;
         }
@@ -315,8 +304,7 @@
 
         .hero-quote-bg {
             position: absolute;
-            right: 60px;
-            top: 50%;
+            right: 60px; top: 50%;
             transform: translateY(-50%);
             font-family: 'Cormorant Garamond', serif;
             font-size: clamp(14px, 1.8vw, 22px);
@@ -440,16 +428,13 @@
             to   { transform: translateX(-50%); }
         }
         .strip-frame {
-            width: 120px;
-            height: 80px;
+            width: 120px; height: 80px;
             flex-shrink: 0;
             overflow: hidden;
             border: 1px solid rgba(200,151,58,0.15);
-            position: relative;
         }
         .strip-frame img {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             object-fit: cover;
             filter: saturate(0.7);
             transition: filter 0.4s;
@@ -474,6 +459,8 @@
             border-radius: 2px;
             transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
             display: inline-block;
+            border: none;
+            cursor: none;
         }
         .btn-silk:hover {
             transform: translateY(-4px);
@@ -498,7 +485,7 @@
             transform: translateY(-4px);
         }
 
-        /* ===== AS SEEN IN MARQUEE ===== */
+        /* ===== MARQUEE ===== */
         .marquee-section {
             background: var(--bg2);
             padding: 32px 0;
@@ -508,7 +495,6 @@
         }
         .marquee-track {
             display: flex;
-            gap: 0;
             animation: marqueeScroll 25s linear infinite;
             width: max-content;
         }
@@ -540,7 +526,7 @@
         }
         .marquee-item:hover .marquee-name { color: var(--gold); }
 
-        /* ===== SHARED SECTION STYLES ===== */
+        /* ===== SHARED ===== */
         .eyebrow {
             font-size: 10px;
             letter-spacing: 5px;
@@ -569,13 +555,9 @@
         .sec-title em { font-style: italic; color: var(--gold); }
         .sec-title .wine-text { color: var(--wine-l); font-style: italic; }
 
-        /* ===== ABOUT ===== */
+        /* ===== ABOUT - FIXED LAYOUT ===== */
         #about {
             padding: 140px 60px;
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 90px;
-            align-items: start;
             background: linear-gradient(160deg, var(--bg) 0%, var(--amethyst-d) 50%, var(--bg) 100%);
             position: relative;
             overflow: hidden;
@@ -590,7 +572,16 @@
             pointer-events: none;
         }
 
-        .about-visual { position: sticky; top: 110px; }
+        /* Top row: image left, text right — both full width */
+        .about-top-row {
+            display: grid;
+            grid-template-columns: 420px 1fr;
+            gap: 80px;
+            align-items: start;
+            margin-bottom: 80px;
+        }
+
+        .about-visual { position: relative; }
 
         .about-img-wrap { position: relative; width: 100%; }
 
@@ -677,20 +668,25 @@
             line-height: 1.7;
         }
 
+        /* Stats — full width below the two-col row */
+        .about-bottom-full {
+            width: 100%;
+        }
+
         .about-stats {
             display: grid;
-            grid-template-columns: repeat(2,1fr);
-            margin-top: 48px;
+            grid-template-columns: repeat(4, 1fr);
             border: 1px solid rgba(200,151,58,0.09);
+            margin-bottom: 60px;
         }
         .stat-box {
-            padding: 28px 22px;
+            padding: 40px 32px;
             border-right: 1px solid rgba(200,151,58,0.09);
-            border-bottom: 1px solid rgba(200,151,58,0.09);
             transition: background 0.4s;
             position: relative;
             overflow: hidden;
         }
+        .stat-box:last-child { border-right: none; }
         .stat-box::before {
             content: '';
             position: absolute;
@@ -702,26 +698,27 @@
         .stat-box:hover::before { opacity:1; }
         .stat-n {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 52px;
+            font-size: 64px;
             font-weight: 300;
             background: linear-gradient(135deg, var(--gold), var(--blush));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1;
         }
-        .stat-l { font-size:11px; letter-spacing:1px; color:var(--text-dim); margin-top:8px; line-height:1.5; }
+        .stat-l { font-size:12px; letter-spacing:1px; color:var(--text-dim); margin-top:10px; line-height:1.5; }
 
+        /* Skills full width */
         .skills-wrap {
-            margin-top: 48px;
-            padding-top: 48px;
+            padding: 48px 0;
             border-top: 1px solid rgba(200,151,58,0.09);
+            margin-bottom: 48px;
         }
         .skills-title { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-bottom:20px; }
         .skills-grid { display:flex; flex-wrap:wrap; gap:10px; }
         .skill-tag {
-            padding: 6px 16px;
+            padding: 8px 20px;
             border: 1px solid rgba(200,151,58,0.18);
-            font-size: 10px;
+            font-size: 11px;
             letter-spacing: 1px;
             color: var(--text);
             border-radius: 24px;
@@ -730,15 +727,14 @@
         }
         .skill-tag:hover { border-color:var(--gold); color:var(--gold); background:rgba(200,151,58,0.08); }
 
-        /* INSPIRATIONS */
+        /* Inspirations full width 4-col */
         .inspo-grid {
             display: grid;
-            grid-template-columns: repeat(2,1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 16px;
-            margin-top: 48px;
         }
         .inspo-card {
-            padding: 24px;
+            padding: 28px 24px;
             background: rgba(74,21,96,0.12);
             border: 1px solid rgba(200,151,58,0.1);
             transition: all 0.4s;
@@ -759,8 +755,7 @@
         #philosophy::before {
             content: 'यत् भावो';
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%,-50%);
             font-family: 'Cormorant Garamond', serif;
             font-size: clamp(80px, 15vw, 200px);
@@ -844,139 +839,127 @@
         }
         .phil-belief-body { font-size:13px; line-height:1.85; opacity:0.68; }
 
-        /* ===== TIMELINE ===== */
+        /* ===== TIMELINE - REDESIGNED WITH CLEAR CHAPTER TRANSITIONS ===== */
         #timeline {
-            padding: 160px 0;
-            background: var(--bg2);
+            background: var(--bg);
             position: relative;
             overflow: hidden;
         }
 
         .tl-header {
             text-align: center;
-            padding: 0 60px;
-            margin-bottom: 120px;
+            padding: 120px 60px 80px;
+            background: var(--bg2);
+            border-bottom: 1px solid rgba(200,151,58,0.08);
         }
 
-        /* Bhansali film chapter feel */
+        /* Each chapter is a full-screen panel with distinct styling */
         .tl-chapter {
             position: relative;
-            padding: 0 60px 0 50%;
-            margin-bottom: 0;
             min-height: 100vh;
             display: flex;
             align-items: center;
             overflow: hidden;
         }
 
-        .tl-chapter:nth-child(even) {
-            padding: 0 50% 0 60px;
+        /* Alternating chapter background colors for clear separation */
+        .tl-chapter:nth-child(odd)  { background: linear-gradient(135deg, var(--bg) 0%, rgba(74,21,96,0.25) 100%); }
+        .tl-chapter:nth-child(even) { background: linear-gradient(135deg, rgba(107,18,40,0.2) 0%, var(--bg2) 100%); }
+
+        /* Chapter transition divider — visible banner between each chapter */
+        .tl-chapter-banner {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(to right, transparent, var(--gold), var(--blush), var(--amethyst-l), transparent);
         }
 
-        .tl-chapter-bg {
+        /* Chapter number watermark */
+        .tl-chapter-watermark {
             position: absolute;
-            inset: 0;
-            opacity: 0;
-            transition: opacity 1.5s ease;
-        }
-
-        .tl-chapter.visible .tl-chapter-bg { opacity: 1; }
-
-        .tl-chapter-bg-grad {
-            position: absolute;
-            inset: 0;
-        }
-
-        .tl-chapter:nth-child(1) .tl-chapter-bg-grad { background: radial-gradient(ellipse at 30% 50%, rgba(74,21,96,0.4) 0%, transparent 60%); }
-        .tl-chapter:nth-child(2) .tl-chapter-bg-grad { background: radial-gradient(ellipse at 70% 50%, rgba(107,18,40,0.35) 0%, transparent 60%); }
-        .tl-chapter:nth-child(3) .tl-chapter-bg-grad { background: radial-gradient(ellipse at 30% 50%, rgba(200,151,58,0.12) 0%, transparent 60%); }
-        .tl-chapter:nth-child(4) .tl-chapter-bg-grad { background: radial-gradient(ellipse at 70% 50%, rgba(74,21,96,0.4) 0%, transparent 60%); }
-        .tl-chapter:nth-child(5) .tl-chapter-bg-grad { background: radial-gradient(ellipse at 30% 50%, rgba(107,18,40,0.35) 0%, transparent 60%); }
-        .tl-chapter:nth-child(6) .tl-chapter-bg-grad { background: radial-gradient(ellipse at 70% 50%, rgba(200,151,58,0.1) 0%, transparent 60%); }
-        .tl-chapter:nth-child(7) .tl-chapter-bg-grad { background: radial-gradient(ellipse at 30% 50%, rgba(74,21,96,0.4) 0%, transparent 60%); }
-
-        .tl-chapter-divider {
-            position: absolute;
-            left: 50%;
-            top: 0; bottom: 0;
-            width: 1px;
-            background: linear-gradient(to bottom, transparent, rgba(200,151,58,0.3), transparent);
-            transform: translateX(-50%);
-        }
-
-        .tl-chapter:nth-child(even) .tl-chapter-divider { left: 50%; }
-
-        .tl-dot-center {
-            position: absolute;
-            left: 50%;
+            right: 60px;
             top: 50%;
-            transform: translate(-50%,-50%);
-            width: 16px; height: 16px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold), var(--blush));
-            box-shadow: 0 0 30px rgba(200,151,58,0.5);
-            z-index: 2;
-            transition: all 0.5s;
+            transform: translateY(-50%);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(120px, 18vw, 280px);
+            font-weight: 700;
+            color: var(--gold);
+            opacity: 0.04;
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
+        }
+        .tl-chapter:nth-child(even) .tl-chapter-watermark {
+            right: auto;
+            left: 60px;
         }
 
-        .tl-chapter.visible .tl-dot-center {
-            box-shadow: 0 0 60px rgba(200,151,58,0.8);
-            transform: translate(-50%,-50%) scale(1.3);
-        }
-
+        /* Content layout: alternating left/right */
         .tl-content {
             position: relative;
             z-index: 2;
-            padding: 60px;
+            max-width: 680px;
+            padding: 100px 80px;
+            margin-left: 10%;
             opacity: 0;
-            transform: translateX(60px);
+            transform: translateX(-60px);
             transition: all 1.2s cubic-bezier(0.16,1,0.3,1);
         }
-
         .tl-chapter:nth-child(even) .tl-content {
-            transform: translateX(-60px);
+            margin-left: auto;
+            margin-right: 10%;
+            transform: translateX(60px);
         }
-
         .tl-chapter.visible .tl-content {
             opacity: 1;
             transform: translateX(0);
         }
 
-        .tl-chapter-num {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 100px;
-            font-weight: 300;
-            color: var(--gold);
-            opacity: 0.08;
-            line-height: 1;
-            margin-bottom: -20px;
+        /* Chapter label pill */
+        .tl-chapter-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 20px;
+            border: 1px solid rgba(200,151,58,0.25);
+            border-radius: 40px;
+            background: rgba(200,151,58,0.06);
+            margin-bottom: 32px;
         }
-
-        .tl-year {
+        .tl-chapter-label-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 13px;
+            color: var(--gold);
+            opacity: 0.6;
+        }
+        .tl-chapter-label-divider {
+            width: 1px; height: 14px;
+            background: rgba(200,151,58,0.3);
+        }
+        .tl-chapter-label-year {
             font-size: 10px;
-            letter-spacing: 5px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--gold);
-            margin-bottom: 16px;
         }
 
-        .tl-emoji { font-size: 32px; margin-bottom: 20px; display: block; }
+        .tl-emoji { font-size: 40px; display: block; margin-bottom: 24px; }
 
         .tl-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(28px, 3.5vw, 48px);
+            font-size: clamp(36px, 4.5vw, 60px);
             font-weight: 400;
             color: var(--parchment);
-            margin-bottom: 16px;
-            line-height: 1.15;
+            margin-bottom: 24px;
+            line-height: 1.1;
         }
 
         .tl-body {
-            font-size: 15px;
-            line-height: 1.95;
+            font-size: 16px;
+            line-height: 2;
             color: var(--text);
-            opacity: 0.75;
-            margin-bottom: 20px;
+            opacity: 0.78;
+            margin-bottom: 28px;
         }
 
         .tl-expand-btn {
@@ -985,16 +968,21 @@
             text-transform: uppercase;
             color: var(--gold);
             cursor: none;
-            border: none;
-            background: none;
-            padding: 0;
-            display: flex;
+            border: 1px solid rgba(200,151,58,0.25);
+            background: rgba(200,151,58,0.06);
+            padding: 12px 24px;
+            border-radius: 2px;
+            display: inline-flex;
             align-items: center;
             gap: 10px;
-            transition: gap 0.4s;
+            transition: all 0.4s;
             font-family: 'Montserrat', sans-serif;
         }
-        .tl-expand-btn:hover { gap: 18px; }
+        .tl-expand-btn:hover {
+            background: rgba(200,151,58,0.14);
+            border-color: var(--gold);
+            gap: 16px;
+        }
         .tl-expand-btn::after { content: '→'; }
 
         .tl-expand {
@@ -1004,14 +992,36 @@
         }
         .tl-expand.open { max-height: 600px; }
         .tl-expand-inner {
-            padding-top: 20px;
-            margin-top: 20px;
+            padding-top: 24px;
+            margin-top: 24px;
             border-top: 1px solid rgba(200,151,58,0.1);
-            font-size: 14px;
-            line-height: 1.95;
+            font-size: 15px;
+            line-height: 2;
             color: var(--blush-l);
             opacity: 0.85;
         }
+
+        /* Bottom scroll hint on each chapter */
+        .tl-scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.3;
+            animation: bounce 2s ease infinite;
+        }
+        .tl-scroll-hint span { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); }
+        .tl-scroll-hint::after { content: '↓'; color: var(--gold); font-size: 16px; }
+        @keyframes bounce {
+            0%,100% { transform: translateX(-50%) translateY(0); }
+            50%      { transform: translateX(-50%) translateY(6px); }
+        }
+        /* Hide scroll hint on last chapter */
+        .tl-chapter:last-of-type .tl-scroll-hint { display: none; }
 
         /* ===== EXPANDABLE PORTFOLIO ===== */
         .exp-wrap { background: var(--bg); }
@@ -1197,7 +1207,7 @@
         }
         .ag-btn:hover { background:rgba(200,151,58,0.15); border-color:var(--gold); }
 
-        /* HORIZONTAL FILM STRIP GALLERY */
+        /* HORIZONTAL FILM STRIP */
         .hstrip-wrap {
             overflow: hidden;
             padding: 24px 0;
@@ -1216,17 +1226,13 @@
             to   { transform: translateX(-50%); }
         }
         .hstrip-frame {
-            width: 160px;
-            height: 110px;
+            width: 160px; height: 110px;
             flex-shrink: 0;
             overflow: hidden;
             border: 1px solid rgba(200,151,58,0.12);
-            position: relative;
-            cursor: none;
         }
         .hstrip-frame img {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             object-fit: cover;
             filter: saturate(0.6) sepia(0.1);
             transition: all 0.5s;
@@ -1236,15 +1242,6 @@
         .gallery-caption-box {
             padding: 40px 60px 56px;
             background: var(--bg2);
-        }
-        .gallery-caption-box p {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 20px;
-            font-style: italic;
-            color: var(--blush-l);
-            line-height: 1.75;
-            max-width: 680px;
-            opacity: 0.82;
         }
 
         /* ===== FILMS ===== */
@@ -1282,7 +1279,6 @@
             overflow: hidden;
             background: var(--bg3);
         }
-
         .bts-cell img,
         .bts-cell video {
             width: 100%;
@@ -1292,10 +1288,7 @@
             display: block;
             transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
         }
-
-        .bts-cell.full-video {
-            grid-column: span 3;
-        }
+        .bts-cell.full-video { grid-column: span 3; }
         .bts-cell.full-video video {
             width: 100%;
             height: auto;
@@ -1304,7 +1297,6 @@
             background: #000;
             min-height: unset;
         }
-
         .bts-cell-ov {
             position: absolute;
             inset: 0;
@@ -1316,7 +1308,7 @@
         .bts-cell:hover .bts-cell-ov { opacity:1; }
         .bts-cell:hover img { transform:scale(1.05); }
 
-        /* ===== TRIBUNE FULL ===== */
+        /* ===== TRIBUNE ===== */
         .tribune-full {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1430,12 +1422,8 @@
         .sacred-side-item img { width:100%; height:266px; object-fit:cover; display:block; transition:transform 0.8s cubic-bezier(0.16,1,0.3,1); }
         .sacred-side-item:hover img { transform:scale(1.05); }
 
-        /* SPEAKING STAGES */
-        .speaking-stages {
-            margin-top: 56px;
-            padding-top: 56px;
-            border-top: 1px solid rgba(200,151,58,0.09);
-        }
+        /* SPEAKING */
+        .speaking-stages { margin-top: 56px; padding-top: 56px; border-top: 1px solid rgba(200,151,58,0.09); }
         .stages-title { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-bottom:32px; }
         .stages-scroll {
             display: flex;
@@ -1459,12 +1447,7 @@
         .stage-event { font-family:'Cormorant Garamond',serif; font-size:18px; color:var(--parchment); margin-bottom:8px; line-height:1.3; }
         .stage-org { font-size:11px; opacity:0.5; }
 
-        /* SPEAKING LAYOUT */
-        .speaking-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 72px;
-        }
+        .speaking-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; }
         .speaking-big { font-family:'Cormorant Garamond',serif; font-size:clamp(22px,2.5vw,32px); font-style:italic; line-height:1.65; color:var(--parchment); margin-bottom:28px; }
         .speaking-big em { color:var(--gold); font-style:normal; }
         .speaking-body { font-size:15px; line-height:1.95; opacity:0.74; margin-bottom:14px; }
@@ -1476,14 +1459,13 @@
             align-items: center;
             gap: 20px;
             transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
-            cursor: default;
         }
         .topic-row:hover { padding-left:14px; border-color:rgba(200,151,58,0.28); }
         .topic-row:hover .topic-nm { color:var(--gold); }
         .topic-n { font-size:10px; color:var(--gold); opacity:0.35; min-width:22px; }
         .topic-nm { font-family:'Cormorant Garamond',serif; font-size:22px; color:var(--parchment); transition:color 0.4s; }
 
-        /* ===== AWARDS WALL ===== */
+        /* ===== AWARDS ===== */
         #awards-sec {
             padding: 140px 60px;
             background: linear-gradient(160deg, var(--wine-d) 0%, var(--bg) 50%, var(--amethyst-d) 100%);
@@ -1497,10 +1479,7 @@
             margin-bottom: 60px;
             max-width: 560px;
         }
-        .awards-masonry {
-            columns: 3;
-            column-gap: 16px;
-        }
+        .awards-masonry { columns: 3; column-gap: 16px; }
         .award-card {
             break-inside: avoid;
             margin-bottom: 16px;
@@ -1538,23 +1517,9 @@
         .award-org { font-size:11px; opacity:0.5; line-height:1.5; }
 
         /* ===== LANGUAGES & TOOLS ===== */
-        #lang-tools {
-            padding: 140px 60px;
-            background: var(--bg2);
-        }
-        .lt-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            margin-top: 60px;
-        }
-        .lt-section-title {
-            font-size: 10px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 36px;
-        }
+        #lang-tools { padding: 140px 60px; background: var(--bg2); }
+        .lt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 60px; }
+        .lt-section-title { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-bottom:36px; }
         .lang-item { margin-bottom: 28px; }
         .lang-name {
             font-family: 'Cormorant Garamond', serif;
@@ -1565,12 +1530,7 @@
             justify-content: space-between;
         }
         .lang-level { font-size:11px; color:var(--gold); opacity:0.7; }
-        .lang-bar-bg {
-            height: 1px;
-            background: rgba(200,151,58,0.15);
-            position: relative;
-            overflow: hidden;
-        }
+        .lang-bar-bg { height:1px; background:rgba(200,151,58,0.15); position:relative; overflow:hidden; }
         .lang-bar {
             height: 100%;
             background: linear-gradient(to right, var(--gold), var(--blush));
@@ -1604,7 +1564,7 @@
         .tool-tag:hover { border-color:rgba(200,151,58,0.3); color:var(--gold); }
         .tool-tag:hover::before { width:100%; }
 
-        /* ===== CONTACT FORM ===== */
+        /* ===== CONTACT ===== */
         #contact {
             padding: 160px 60px;
             background: linear-gradient(160deg, var(--bg) 0%, var(--amethyst-d) 50%, var(--wine-d) 100%);
@@ -1615,8 +1575,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background:
-                radial-gradient(ellipse at 50% 50%, rgba(74,21,96,0.3) 0%, transparent 65%);
+            background: radial-gradient(ellipse at 50% 50%, rgba(74,21,96,0.3) 0%, transparent 65%);
         }
         .contact-inner { position:relative; z-index:1; max-width:900px; margin:0 auto; }
         .contact-h {
@@ -1648,17 +1607,11 @@
         .contact-email:hover { opacity:0.7; }
 
         /* FORM */
-        .contact-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
+        .contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .form-group { display:flex; flex-direction:column; gap:8px; }
         .form-group.full { grid-column:span 2; }
         .form-label { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); opacity:0.7; }
-        .form-input,
-        .form-select,
-        .form-textarea {
+        .form-input, .form-select, .form-textarea {
             background: rgba(74,21,96,0.1);
             border: 1px solid rgba(200,151,58,0.15);
             color: var(--parchment);
@@ -1669,20 +1622,36 @@
             transition: all 0.4s;
             outline: none;
             border-radius: 2px;
+            width: 100%;
         }
-        .form-input:focus,
-        .form-select:focus,
-        .form-textarea:focus {
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
             border-color: var(--gold);
             background: rgba(74,21,96,0.18);
         }
         .form-select { cursor: none; }
         .form-select option { background: var(--bg3); color: var(--parchment); }
         .form-textarea { resize: vertical; min-height: 140px; }
-        .form-submit {
+        .form-submit { grid-column: span 2; text-align: center; margin-top: 16px; }
+
+        /* Form success/error messages */
+        .form-message {
             grid-column: span 2;
+            padding: 16px 20px;
+            border-radius: 2px;
+            font-size: 13px;
+            letter-spacing: 1px;
             text-align: center;
-            margin-top: 16px;
+            display: none;
+        }
+        .form-message.success {
+            background: rgba(200,151,58,0.1);
+            border: 1px solid rgba(200,151,58,0.3);
+            color: var(--gold);
+        }
+        .form-message.error {
+            background: rgba(107,18,40,0.15);
+            border: 1px solid rgba(107,18,40,0.4);
+            color: var(--blush-l);
         }
 
         .contact-row {
@@ -1767,15 +1736,15 @@
             nav { padding:18px 24px; }
             nav.scrolled { padding:14px 24px; }
             .hero-inner { padding:130px 24px 80px; }
-            #about { grid-template-columns:1fr; padding:80px 24px; gap:48px; }
-            .about-visual { position:static; }
+            #about { padding:80px 24px; }
+            .about-top-row { grid-template-columns:1fr; gap:48px; }
+            .about-stats { grid-template-columns: repeat(2,1fr); }
+            .inspo-grid { grid-template-columns: repeat(2,1fr); }
             #philosophy { padding:100px 24px; }
             .phil-beliefs { grid-template-columns:1fr; }
-            #timeline { padding:100px 0; }
-            .tl-chapter { padding:60px 24px 60px 24px !important; min-height:auto; }
-            .tl-chapter-divider { display:none; }
-            .tl-dot-center { display:none; }
-            .tl-content { transform:none !important; padding:0; }
+            .tl-content { margin-left: 0 !important; margin-right: 0 !important; padding: 60px 24px; }
+            .tl-chapter-watermark { display: none; }
+            .tl-chapter { min-height: auto; }
             .exp-head { padding:28px 24px; }
             .exp-head-l { gap:16px; }
             .exp-inner { padding:36px 24px; }
@@ -1796,6 +1765,7 @@
             .contact-form { grid-template-columns:1fr; }
             .form-group.full { grid-column:span 1; }
             .form-submit { grid-column:span 1; }
+            .form-message { grid-column: span 1; }
             .contact-row { gap:32px; }
             footer { grid-template-columns:1fr; padding:40px 24px; text-align:center; }
             .footer-right { text-align:center; }
@@ -1830,8 +1800,8 @@
 <!-- NAV -->
 <nav id="nav">
     <a href="#hero" class="nav-logo">
-        <!-- PROFESSIONAL LOGO SVG -->
-        <svg class="logo-svg" viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg">
+        <!-- FIXED LOGO — wider viewBox prevents second G cutoff -->
+        <svg class="logo-svg" viewBox="0 0 320 60" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%"   stop-color="#c8973a"/>
@@ -1839,15 +1809,12 @@
                     <stop offset="100%" stop-color="#b0b0c8"/>
                 </linearGradient>
             </defs>
-            <!-- G diamond A -->
-            <text x="0" y="32" font-family="Cormorant Garamond, serif" font-size="28" font-weight="700" fill="url(#logoGrad)" letter-spacing="2">G</text>
-            <text x="22" y="28" font-family="serif" font-size="14" fill="#c8973a" opacity="0.8">✦</text>
-            <text x="36" y="32" font-family="Cormorant Garamond, serif" font-size="28" font-weight="700" fill="url(#logoGrad)" letter-spacing="2">A</text>
-            <!-- full name -->
-            <text x="0" y="46" font-family="Cormorant Garamond, serif" font-size="11" fill="#f5edd6" letter-spacing="5" opacity="0.85">Gungun Arora</text>
-            <!-- decorative line -->
-            <line x1="0" y1="52" x2="120" y2="52" stroke="url(#logoGrad)" stroke-width="0.5" opacity="0.5"/>
-            <text x="56" y="52" font-family="serif" font-size="6" fill="#c8973a" opacity="0.6">✦</text>
+            <text x="2" y="32" font-family="Cormorant Garamond, serif" font-size="28" font-weight="700" fill="url(#logoGrad)" letter-spacing="2">G</text>
+            <text x="24" y="28" font-family="serif" font-size="14" fill="#c8973a" opacity="0.8">✦</text>
+            <text x="38" y="32" font-family="Cormorant Garamond, serif" font-size="28" font-weight="700" fill="url(#logoGrad)" letter-spacing="2">A</text>
+            <text x="2" y="48" font-family="Cormorant Garamond, serif" font-size="11" fill="#f5edd6" letter-spacing="5" opacity="0.85">Gungun Arora</text>
+            <line x1="2" y1="54" x2="130" y2="54" stroke="url(#logoGrad)" stroke-width="0.5" opacity="0.5"/>
+            <text x="60" y="54" font-family="serif" font-size="6" fill="#c8973a" opacity="0.6">✦</text>
         </svg>
     </a>
     <div class="hamburger" id="burger" onclick="toggleMenu()">
@@ -1858,22 +1825,14 @@
 <!-- ===== HERO ===== -->
 <section id="hero">
     <div class="hero-gradient-bg"></div>
-
-    <!-- Ken Burns BG -->
     <div class="hero-gallery-bg" id="heroBg">
         <div class="hero-bg-slide active"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/9dde7f78-97f6-418e-9407-05f8d6372286.jpg" alt="" loading="lazy"></div>
         <div class="hero-bg-slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/91940743-8572-43ef-b6d1-c423cb733801.jpg" alt="" loading="lazy"></div>
         <div class="hero-bg-slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/b0c789f9-1c9f-4e34-b8bc-e053033b923b.jpg" alt="" loading="lazy"></div>
         <div class="hero-bg-slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/20260220_135842.jpg" alt="" loading="lazy"></div>
     </div>
-
     <div class="hero-grain"></div>
-
-    <!-- Background quote watermark -->
-    <div class="hero-quote-bg">
-        यत् भावो<br>तत् भवति
-    </div>
-
+    <div class="hero-quote-bg">यत् भावो<br>तत् भवति</div>
     <div class="hero-inner">
         <p class="hero-pre">Journalist · Cinematographer · Visual Storyteller</p>
         <h1 class="hero-name">
@@ -1906,7 +1865,6 @@
 <!-- FILM STRIP -->
 <div class="film-strip-wrap">
     <div class="film-strip" id="filmStrip">
-        <!-- duplicated for seamless loop -->
         <div class="strip-frame"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/9dde7f78-97f6-418e-9407-05f8d6372286.jpg" alt="" loading="lazy"></div>
         <div class="strip-frame"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/91940743-8572-43ef-b6d1-c423cb733801.jpg" alt="" loading="lazy"></div>
         <div class="strip-frame"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/f0e9620e-02e2-4bb9-b884-7e90f479dc5f.jpg" alt="" loading="lazy"></div>
@@ -1917,7 +1875,6 @@
         <div class="strip-frame"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/009c91b2-fc5a-4834-b01c-43fb0f0bbbea.jpg" alt="" loading="lazy"></div>
         <div class="strip-frame"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/20250218_140450.jpg" alt="" loading="lazy"></div>
         <div class="strip-frame"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/20260113_185041.jpg" alt="" loading="lazy"></div>
-        <!-- duplicate for seamless -->
         <div class="strip-frame"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/9dde7f78-97f6-418e-9407-05f8d6372286.jpg" alt="" loading="lazy"></div>
         <div class="strip-frame"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/91940743-8572-43ef-b6d1-c423cb733801.jpg" alt="" loading="lazy"></div>
         <div class="strip-frame"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/f0e9620e-02e2-4bb9-b884-7e90f479dc5f.jpg" alt="" loading="lazy"></div>
@@ -1934,7 +1891,6 @@
 <!-- AS SEEN IN -->
 <div class="marquee-section">
     <div class="marquee-track">
-        <!-- set 1 -->
         <div class="marquee-item"><div class="marquee-dot"></div><span class="marquee-name">The Tribune</span></div>
         <div class="marquee-item"><div class="marquee-dot"></div><span class="marquee-name">Teamwork Arts</span></div>
         <div class="marquee-item"><div class="marquee-dot"></div><span class="marquee-name">Sacred Amritsar</span></div>
@@ -1942,7 +1898,6 @@
         <div class="marquee-item"><div class="marquee-dot"></div><span class="marquee-name">GNDU</span></div>
         <div class="marquee-item"><div class="marquee-dot"></div><span class="marquee-name">Police Commissionerate of Amritsar</span></div>
         <div class="marquee-item"><div class="marquee-dot"></div><span class="marquee-name">Madhav Vidya Niketan</span></div>
-        <!-- set 2 duplicate -->
         <div class="marquee-item"><div class="marquee-dot"></div><span class="marquee-name">The Tribune</span></div>
         <div class="marquee-item"><div class="marquee-dot"></div><span class="marquee-name">Teamwork Arts</span></div>
         <div class="marquee-item"><div class="marquee-dot"></div><span class="marquee-name">Sacred Amritsar</span></div>
@@ -1955,41 +1910,41 @@
 
 <!-- ===== ABOUT ===== -->
 <section id="about">
-    <div class="about-visual reveal">
-        <div class="about-img-wrap">
-            <img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/Screenshot_20250316_180712_Photos.jpg" alt="Gungun Arora" class="about-img" onerror="this.style.display='none'">
-            <div class="about-img-fade"></div>
-            <div class="corner tl"></div>
-            <div class="corner tr"></div>
-            <div class="corner bl"></div>
-            <div class="corner br"></div>
-            <div class="about-border"></div>
+    <!-- TOP ROW: image + intro text -->
+    <div class="about-top-row">
+        <div class="about-visual reveal">
+            <div class="about-img-wrap">
+                <img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/Screenshot_20250316_180712_Photos.jpg" alt="Gungun Arora" class="about-img">
+                <div class="about-img-fade"></div>
+                <div class="corner tl"></div>
+                <div class="corner tr"></div>
+                <div class="corner bl"></div>
+                <div class="corner br"></div>
+                <div class="about-border"></div>
+            </div>
+            <div class="about-caption">
+                <span class="about-caption-txt">Gungun Arora · Amritsar</span>
+                <div class="about-caption-line"></div>
+            </div>
         </div>
-        <div class="about-caption">
-            <span class="about-caption-txt">Gungun Arora · Amritsar</span>
-            <div class="about-caption-line"></div>
+
+        <div class="about-text-col">
+            <div class="eyebrow reveal">About</div>
+            <h2 class="sec-title reveal">There is a kind of person<br>who walks into a room<br>and immediately <em>reads it.</em></h2>
+            <p class="para reveal">I have always been that person. Not because I was taught to — but because <strong>attention is the most natural thing I do.</strong> I sense what hides beneath facades. I read emotions that people don't say out loud. And I match myself to the room not to blend in — but to <span class="bls">make something real happen.</span></p>
+            <p class="para reveal reveal-d1">I grew up between Amritsar and London — two cities, two cultures, two entirely different ways of moving through the world. That distance gave me two lenses: one that sees with precision, one that sees with warmth. <span class="wine">Both live in everything I create.</span></p>
+            <div class="pull-quote reveal reveal-d2">
+                <p>A debate judge — someone whose job was to find weakness — told me I had the precision of a natural anchor and the instincts of a real journalist. I didn't celebrate. I got to work.</p>
+            </div>
+            <p class="para reveal">I'm a journalist interning at The Tribune, a cinematographer who has directed two complete works entirely solo, a photographer who shoots silence, a public speaker who has held stages, and a visual storyteller who believes every frame, every word, and every room has a story waiting to be told <strong>right.</strong></p>
+            <p class="para reveal reveal-d1">My thought process is simple — <strong>I don't give up and I don't take no for an answer.</strong> If there's a solution I find it. If there isn't — I create one. I believe in fighting for the truth even when I'm the only one fighting for it. I transform empathy into action. Synchronizing with a team comes naturally to me. <span class="bls">I thrive in the space where craft meets urgency.</span></p>
+            <p class="para reveal reveal-d2">Amritsar is not just where I live — it is what I see through. <span class="wine">A city of extraordinary cultural and spiritual richness</span> that lives in every street, every voice, every evening light. It shows up in my photography, my journalism, my cinematography. Amritsar is in the texture of everything I make.</p>
         </div>
     </div>
 
-    <div class="about-text-col">
-        <div class="eyebrow reveal">About</div>
-        <h2 class="sec-title reveal">There is a kind of person<br>who walks into a room<br>and immediately <em>reads it.</em></h2>
-
-        <p class="para reveal">I have always been that person. Not because I was taught to — but because <strong>attention is the most natural thing I do.</strong> I sense what hides beneath facades. I read emotions that people don't say out loud. And I match myself to the room not to blend in — but to <span class="bls">make something real happen.</span></p>
-
-        <p class="para reveal reveal-d1">I grew up between Amritsar and London — two cities, two cultures, two entirely different ways of moving through the world. That distance gave me two lenses: one that sees with precision, one that sees with warmth. <span class="wine">Both live in everything I create.</span></p>
-
-        <div class="pull-quote reveal reveal-d2">
-            <p>A debate judge — someone whose job was to find weakness — told me I had the precision of a natural anchor and the instincts of a real journalist. I didn't celebrate. I got to work.</p>
-        </div>
-
-        <p class="para reveal">I'm a journalist interning at The Tribune, a cinematographer who has directed two complete works entirely solo, a photographer who shoots silence, a public speaker who has held stages, and a visual storyteller who believes every frame, every word, and every room has a story waiting to be told <strong>right.</strong></p>
-
-        <p class="para reveal reveal-d1">My thought process is simple — <strong>I don't give up and I don't take no for an answer.</strong> If there's a solution I find it. If there isn't — I create one. I believe in fighting for the truth even when I'm the only one fighting for it. I transform empathy into action. Synchronizing with a team comes naturally to me. <span class="bls">I thrive in the space where craft meets urgency.</span></p>
-
-        <p class="para reveal reveal-d2">Amritsar is not just where I live — it is what I see through. <span class="wine">A city of extraordinary cultural and spiritual richness</span> that lives in every street, every voice, every evening light. It shows up in my photography, my journalism, my cinematography. Amritsar is in the texture of everything I make.</p>
-
-        <div class="about-stats reveal reveal-d3">
+    <!-- BOTTOM FULL WIDTH: stats, skills, inspirations -->
+    <div class="about-bottom-full">
+        <div class="about-stats reveal">
             <div class="stat-box">
                 <div class="stat-n" data-target="13">0</div>
                 <div class="stat-l">Delegates Personally Managed · Sacred Amritsar</div>
@@ -2008,7 +1963,7 @@
             </div>
         </div>
 
-        <div class="skills-wrap reveal reveal-d3">
+        <div class="skills-wrap reveal reveal-d1">
             <div class="skills-title">Core Skills</div>
             <div class="skills-grid">
                 <span class="skill-tag">News Reporting</span>
@@ -2032,7 +1987,7 @@
             </div>
         </div>
 
-        <div class="inspo-grid reveal reveal-d3">
+        <div class="inspo-grid reveal reveal-d2">
             <div class="inspo-card">
                 <div class="inspo-role">Filmmaker I Study</div>
                 <div class="inspo-name">Sanjay Leela Bhansali</div>
@@ -2086,38 +2041,45 @@
     </div>
 </section>
 
-<!-- ===== TIMELINE ===== -->
+<!-- ===== TIMELINE - CHAPTER PANELS ===== -->
 <section id="timeline">
     <div class="tl-header reveal">
         <div class="eyebrow" style="justify-content:center;">The Journey</div>
-        <h2 class="sec-title" style="text-align:center;max-width:560px;margin:0 auto;">Every chapter<br>that made me <em>this.</em></h2>
-        <p style="text-align:center;font-size:12px;letter-spacing:2px;color:var(--text-dim);margin-top:16px;text-transform:uppercase;">Click each chapter to expand</p>
+        <h2 class="sec-title" style="text-align:center;max-width:560px;margin:0 auto 16px;">Every chapter<br>that made me <em>this.</em></h2>
+        <p style="text-align:center;font-size:12px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;">Scroll through each chapter · Click to expand</p>
     </div>
 
+    <!-- CHAPTER 01 -->
     <div class="tl-chapter" id="tlc1">
-        <div class="tl-chapter-bg"><div class="tl-chapter-bg-grad"></div></div>
-        <div class="tl-chapter-divider"></div>
-        <div class="tl-dot-center"></div>
+        <div class="tl-chapter-banner"></div>
+        <div class="tl-chapter-watermark">01</div>
         <div class="tl-content">
-            <div class="tl-chapter-num">01</div>
-            <div class="tl-year">Early Years</div>
+            <div class="tl-chapter-label">
+                <span class="tl-chapter-label-num">Chapter 01</span>
+                <div class="tl-chapter-label-divider"></div>
+                <span class="tl-chapter-label-year">Early Years</span>
+            </div>
             <span class="tl-emoji">🇬🇧</span>
-            <div class="tl-title">London & The Art of Attention</div>
+            <div class="tl-title">London & The Art<br>of Attention</div>
             <p class="tl-body">Four years in a city that taught me to see the world differently. Between two cultures I developed something that can't be taught — the instinct to pay attention when everyone else is performing.</p>
             <button class="tl-expand-btn" onclick="toggleTL(this)">Read more</button>
             <div class="tl-expand">
                 <div class="tl-expand-inner">Growing up between London and Amritsar gave me two lenses. One that sees with the precision of distance. One that sees with the warmth of belonging. The years in London shaped how I read people, how I read rooms, how I read the spaces between what is said and what is meant. Both lenses live in everything I create today.</div>
             </div>
         </div>
+        <div class="tl-scroll-hint"><span>Next Chapter</span></div>
     </div>
 
+    <!-- CHAPTER 02 -->
     <div class="tl-chapter" id="tlc2">
-        <div class="tl-chapter-bg"><div class="tl-chapter-bg-grad"></div></div>
-        <div class="tl-chapter-divider"></div>
-        <div class="tl-dot-center"></div>
+        <div class="tl-chapter-banner"></div>
+        <div class="tl-chapter-watermark">02</div>
         <div class="tl-content">
-            <div class="tl-chapter-num">02</div>
-            <div class="tl-year">2022 — 2023</div>
+            <div class="tl-chapter-label">
+                <span class="tl-chapter-label-num">Chapter 02</span>
+                <div class="tl-chapter-label-divider"></div>
+                <span class="tl-chapter-label-year">2022 — 2023</span>
+            </div>
             <span class="tl-emoji">🎤</span>
             <div class="tl-title">The Debate Stage</div>
             <p class="tl-body">A judge whose job was to find weakness told me I had the precision of a natural anchor. I walked away with two first prizes in impromptu speech and an appreciation award from the Police Commissionerate of Amritsar.</p>
@@ -2126,15 +2088,19 @@
                 <div class="tl-expand-inner">1st Prize — Prantiya Sanskriti Mahotsav. 2nd Prize — Uttar Shetr Sanskriti Mahotsav. Recognized by the Police Commissionerate of Amritsar for outstanding public speaking. Represented BBK DAV at GNDU Youth Festival 2024. The stage has never intimidated me. It has always felt like exactly where I am supposed to be.</div>
             </div>
         </div>
+        <div class="tl-scroll-hint"><span>Next Chapter</span></div>
     </div>
 
+    <!-- CHAPTER 03 -->
     <div class="tl-chapter" id="tlc3">
-        <div class="tl-chapter-bg"><div class="tl-chapter-bg-grad"></div></div>
-        <div class="tl-chapter-divider"></div>
-        <div class="tl-dot-center"></div>
+        <div class="tl-chapter-banner"></div>
+        <div class="tl-chapter-watermark">03</div>
         <div class="tl-content">
-            <div class="tl-chapter-num">03</div>
-            <div class="tl-year">2023 — 2024</div>
+            <div class="tl-chapter-label">
+                <span class="tl-chapter-label-num">Chapter 03</span>
+                <div class="tl-chapter-label-divider"></div>
+                <span class="tl-chapter-label-year">2023 — 2024</span>
+            </div>
             <span class="tl-emoji">📸</span>
             <div class="tl-title">The First Frame</div>
             <p class="tl-body">I picked up a camera and discovered I had been seeing in macro all along. Every shot an emotion. Every frame a decision. Beauty doesn't announce itself — it waits.</p>
@@ -2143,32 +2109,40 @@
                 <div class="tl-expand-inner">My photography is 90% macro — the world in extreme close-up. A bee on a mustard flower at golden hour. The universe inside a human iris. A wet leaf on green grass. Two friends' hands reaching for the same popsicle. I don't hunt for beauty. I wait for it to reveal itself — and then I witness it. @clickswithgg on Instagram became the home for this work.</div>
             </div>
         </div>
+        <div class="tl-scroll-hint"><span>Next Chapter</span></div>
     </div>
 
+    <!-- CHAPTER 04 -->
     <div class="tl-chapter" id="tlc4">
-        <div class="tl-chapter-bg"><div class="tl-chapter-bg-grad"></div></div>
-        <div class="tl-chapter-divider"></div>
-        <div class="tl-dot-center"></div>
+        <div class="tl-chapter-banner"></div>
+        <div class="tl-chapter-watermark">04</div>
         <div class="tl-content">
-            <div class="tl-chapter-num">04</div>
-            <div class="tl-year">2026</div>
+            <div class="tl-chapter-label">
+                <span class="tl-chapter-label-num">Chapter 04</span>
+                <div class="tl-chapter-label-divider"></div>
+                <span class="tl-chapter-label-year">2026</span>
+            </div>
             <span class="tl-emoji">🎬</span>
-            <div class="tl-title">Dhagar Dhun & Antim Darpan</div>
+            <div class="tl-title">Dhagar Dhun<br>& Antim Darpan</div>
             <p class="tl-body">Two complete original works — one documentary film, one radio drama. Both directed, produced, scripted, and edited entirely by me. Solo. From first word to final cut.</p>
             <button class="tl-expand-btn" onclick="toggleTL(this)">Read more</button>
             <div class="tl-expand">
                 <div class="tl-expand-inner">Dhagar Dhun — a 7-minute documentary portrait of an all-women film crew set against Jammu's Dogri culture. Every light placed by hand. Every line of dialogue written by me. Every cut intentional. Then Antim Darpan — a radio drama built on sound alone, where immersion had to be created without a single visual. Two different formats. One unwavering commitment to craft.</div>
             </div>
         </div>
+        <div class="tl-scroll-hint"><span>Next Chapter</span></div>
     </div>
 
+    <!-- CHAPTER 05 -->
     <div class="tl-chapter" id="tlc5">
-        <div class="tl-chapter-bg"><div class="tl-chapter-bg-grad"></div></div>
-        <div class="tl-chapter-divider"></div>
-        <div class="tl-dot-center"></div>
+        <div class="tl-chapter-banner"></div>
+        <div class="tl-chapter-watermark">05</div>
         <div class="tl-content">
-            <div class="tl-chapter-num">05</div>
-            <div class="tl-year">February 2026</div>
+            <div class="tl-chapter-label">
+                <span class="tl-chapter-label-num">Chapter 05</span>
+                <div class="tl-chapter-label-divider"></div>
+                <span class="tl-chapter-label-year">February 2026</span>
+            </div>
             <span class="tl-emoji">🎪</span>
             <div class="tl-title">Sacred Amritsar</div>
             <p class="tl-body">Hundreds of delegates. An international cultural festival. Artists including Usha Uthup and Kailash Kher. I personally managed 13+ delegates — and by the final evening every one of them asked for me by name.</p>
@@ -2177,15 +2151,19 @@
                 <div class="tl-expand-inner">Teamwork Arts. The Sacred Amritsar festival. 72 hours of logistics, hospitality, real-time crisis management, and deep human connection. I used to doubt my ability to give people a truly satisfactory experience. Sacred Amritsar erased that doubt permanently and completely. I thrive under pressure. This is what I do.</div>
             </div>
         </div>
+        <div class="tl-scroll-hint"><span>Next Chapter</span></div>
     </div>
 
+    <!-- CHAPTER 06 -->
     <div class="tl-chapter" id="tlc6">
-        <div class="tl-chapter-bg"><div class="tl-chapter-bg-grad"></div></div>
-        <div class="tl-chapter-divider"></div>
-        <div class="tl-dot-center"></div>
+        <div class="tl-chapter-banner"></div>
+        <div class="tl-chapter-watermark">06</div>
         <div class="tl-content">
-            <div class="tl-chapter-num">06</div>
-            <div class="tl-year">2025 — Present</div>
+            <div class="tl-chapter-label">
+                <span class="tl-chapter-label-num">Chapter 06</span>
+                <div class="tl-chapter-label-divider"></div>
+                <span class="tl-chapter-label-year">2025 — Present</span>
+            </div>
             <span class="tl-emoji">🗞️</span>
             <div class="tl-title">The Tribune</div>
             <p class="tl-body">The newsroom. The real thing. Currently interning at one of India's most respected national newspapers — learning the discipline, ethics, and craft of journalism from the ground up every single day.</p>
@@ -2194,15 +2172,19 @@
                 <div class="tl-expand-inner">Research. Drafting. Editorial coordination. Fact-checking. Story development. Publication. Every day in this newsroom is a masterclass in what journalism actually is — not the romanticised version, but the real, demanding, essential craft of finding truth and putting it into words that matter. I am building the foundation of a career I intend to be remarkable.</div>
             </div>
         </div>
+        <div class="tl-scroll-hint"><span>Next Chapter</span></div>
     </div>
 
+    <!-- CHAPTER 07 -->
     <div class="tl-chapter" id="tlc7">
-        <div class="tl-chapter-bg"><div class="tl-chapter-bg-grad"></div></div>
-        <div class="tl-chapter-divider"></div>
-        <div class="tl-dot-center"></div>
+        <div class="tl-chapter-banner"></div>
+        <div class="tl-chapter-watermark">07</div>
         <div class="tl-content">
-            <div class="tl-chapter-num">07</div>
-            <div class="tl-year">The Horizon</div>
+            <div class="tl-chapter-label">
+                <span class="tl-chapter-label-num">Chapter 07</span>
+                <div class="tl-chapter-label-divider"></div>
+                <span class="tl-chapter-label-year">The Horizon</span>
+            </div>
             <span class="tl-emoji">🔮</span>
             <div class="tl-title">What Comes Next</div>
             <p class="tl-body">Filmmaker. Cinematographer. Visual storyteller. I am building something I believe in deeply — a body of work that lives at the intersection of culture, humanity, and truth. यत् भावो — तत् भवति.</p>
@@ -2232,7 +2214,6 @@
         </div>
         <div class="exp-body">
             <div class="section-opening-quote" style="padding:48px 60px 0;">"Beauty doesn't announce itself. It waits — in the curve of a petal, the weight of a dying leaf, the universe inside an iris. My camera doesn't hunt. <em>It listens.</em>"</div>
-            <!-- AUTO GALLERY -->
             <div class="auto-gallery">
                 <div class="ag-slide active"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/9dde7f78-97f6-418e-9407-05f8d6372286.jpg" alt="" loading="lazy"></div>
                 <div class="ag-slide"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/91940743-8572-43ef-b6d1-c423cb733801.jpg" alt="" loading="lazy"></div>
@@ -2264,7 +2245,6 @@
                     </div>
                 </div>
             </div>
-            <!-- HORIZONTAL STRIP -->
             <div class="hstrip-wrap">
                 <div class="hstrip-track">
                     <div class="hstrip-frame"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/9dde7f78-97f6-418e-9407-05f8d6372286.jpg" alt="" loading="lazy"></div>
@@ -2277,7 +2257,6 @@
                     <div class="hstrip-frame"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/009c91b2-fc5a-4834-b01c-43fb0f0bbbea.jpg" alt="" loading="lazy"></div>
                     <div class="hstrip-frame"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/20250218_140450.jpg" alt="" loading="lazy"></div>
                     <div class="hstrip-frame"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/20260113_185041.jpg" alt="" loading="lazy"></div>
-                    <!-- duplicate -->
                     <div class="hstrip-frame"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/9dde7f78-97f6-418e-9407-05f8d6372286.jpg" alt="" loading="lazy"></div>
                     <div class="hstrip-frame"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/91940743-8572-43ef-b6d1-c423cb733801.jpg" alt="" loading="lazy"></div>
                     <div class="hstrip-frame"><img src="https://raw.githubusercontent.com/TeaWithGG/teawithgg.github.io/main/f0e9620e-02e2-4bb9-b884-7e90f479dc5f.jpg" alt="" loading="lazy"></div>
@@ -2322,7 +2301,7 @@
                         <div class="film-tags">
                             <span class="film-tag">Director</span><span class="film-tag">Producer</span><span class="film-tag">Writer</span><span class="film-tag">Cinematographer</span><span class="film-tag">Editor</span>
                         </div>
-                        <p class="film-desc">A behind-the-scenes portrait of an all-women film crew set against Jammu's rich Dogri culture. Every word of dialogue written by me. Every light placed by me. Every cut intentional. Built entirely solo — this film showed me exactly what I am capable of.</p>
+                        <p class="film-desc">A behind-the-scenes portrait of an all-women film crew set against Jammu's rich Dogri culture. Every word of dialogue written by me. Every light placed by me. Every cut intentional. Built entirely solo.</p>
                     </div>
                     <div class="film-card">
                         <div class="film-embed">
@@ -2333,10 +2312,9 @@
                         <div class="film-tags">
                             <span class="film-tag">Director</span><span class="film-tag">Writer</span><span class="film-tag">Producer</span><span class="film-tag">Editor</span>
                         </div>
-                        <p class="film-desc">A complete radio drama built on sound, voice, and writing alone. No visuals. No shortcuts. Immersion has to be earned entirely through craft. Building a world you cannot see is one of the hardest things a storyteller can do. This is the project I am most quietly proud of.</p>
+                        <p class="film-desc">A complete radio drama built on sound, voice, and writing alone. No visuals. No shortcuts. Immersion earned entirely through craft. This is the project I am most quietly proud of.</p>
                     </div>
                 </div>
-
                 <div class="bts-label">Behind The Scenes · On Set</div>
                 <div class="bts-reel">
                     <div class="bts-cell full-video">
@@ -2395,7 +2373,7 @@
                         <div class="exp-org">The Tribune</div>
                         <div class="exp-role">Journalism Intern · Amritsar Branch</div>
                         <div class="exp-date">2025 — Present</div>
-                        <p class="exp-desc">One of India's most respected national newsrooms. Every day here is a masterclass in the discipline, ethics, and craft of real journalism. Research. Drafting. Editorial coordination. Fact-checking. Story development. Publication. I am building the foundation of a career I intend to be remarkable — not from textbooks but from the ground up.</p>
+                        <p class="exp-desc">One of India's most respected national newsrooms. Research. Drafting. Editorial coordination. Fact-checking. Story development. Publication. I am building the foundation of a career I intend to be remarkable.</p>
                         <div class="exp-quote">"Every day in this newsroom teaches me something that no classroom could."</div>
                     </div>
                 </div>
@@ -2424,13 +2402,13 @@
                         <span class="blog-arrow">↗</span>
                         <div class="blog-type">Human Interest · Journalism</div>
                         <div class="blog-name">Blogs With GG</div>
-                        <p class="blog-desc">Human interest stories, journalistic writing, cultural narratives, and the world seen through a reporter's instinct. This is where I report.</p>
+                        <p class="blog-desc">Human interest stories, journalistic writing, cultural narratives, and the world seen through a reporter's instinct.</p>
                     </a>
                     <a href="https://teawithgg.wordpress.com/" target="_blank" class="blog-tile">
                         <span class="blog-arrow">↗</span>
                         <div class="blog-type">Personal · Creative · Essays</div>
                         <div class="blog-name">Tea With GG</div>
-                        <p class="blog-desc">Personal essays, reflections, and the intimate exploratory side of my voice. Two polar styles. One writer. This is where I breathe.</p>
+                        <p class="blog-desc">Personal essays, reflections, and the intimate exploratory side of my voice. This is where I breathe.</p>
                     </a>
                 </div>
             </div>
@@ -2458,14 +2436,14 @@
                         <div class="exp-org">Teamwork Arts · Sacred Amritsar</div>
                         <div class="exp-role">Delegate Management Volunteer</div>
                         <div class="exp-date">20–22 February 2026</div>
-                        <p class="exp-desc">A three-day international cultural festival with hundreds of delegates from across the world. I personally managed 13+ delegates — artists, performers, and international guests — as their first point of contact throughout. Artists in attendance included Usha Uthup and Kailash Kher. Hospitality, logistics, real-time crisis resolution, deep interpersonal coordination — all simultaneously, all flawlessly.</p>
-                        <div class="exp-quote">"By the final evening, every single delegate I personally managed asked for me by name and told my supervisor I was the best delegate manager they had ever encountered. That is not luck. That is what I do."</div>
+                        <p class="exp-desc">A three-day international cultural festival. I personally managed 13+ delegates — artists including Usha Uthup and Kailash Kher. Hospitality, logistics, real-time crisis resolution, deep interpersonal coordination.</p>
+                        <div class="exp-quote">"By the final evening, every delegate I managed asked for me by name. That is not luck. That is what I do."</div>
                     </div>
                     <div class="exp-card">
                         <div class="exp-org">BBK DAV Women's College</div>
                         <div class="exp-role">Lead Event Host & Stage Anchor</div>
                         <div class="exp-date">2024 — Present · Amritsar</div>
-                        <p class="exp-desc">Led 15 performers across 4 major college events — 2 fresher welcomes and 2 farewell ceremonies — as lead anchor and hosting coordinator. A great event doesn't just happen. It is held together by someone who knows exactly what they are doing and never lets the audience feel the pressure behind the curtain.</p>
+                        <p class="exp-desc">Led 15 performers across 4 major college events — 2 fresher welcomes and 2 farewell ceremonies — as lead anchor and hosting coordinator.</p>
                     </div>
                 </div>
                 <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--blush);margin-bottom:20px;">Sacred Amritsar · The Event</div>
@@ -2505,7 +2483,7 @@
                 <div class="speaking-layout">
                     <div>
                         <p class="speaking-big">I have been doing this — on stages, in debates, at ceremonies, in rooms of hundreds — since before I had a name for it.</p>
-                        <p class="speaking-body">Available for speaking engagements, panel discussions, event hosting, and keynote presentations. I bring precision, presence, and a genuine belief that every single word matters. Based in Amritsar. Open to travel. Open to the right conversation.</p>
+                        <p class="speaking-body">Available for speaking engagements, panel discussions, event hosting, and keynote presentations. Based in Amritsar. Open to travel.</p>
                         <div style="margin-top:32px;">
                             <a href="#contact" class="btn-silk">Book Me To Speak</a>
                         </div>
@@ -2567,7 +2545,7 @@
 
 </div>
 
-<!-- ===== AWARDS WALL ===== -->
+<!-- ===== AWARDS ===== -->
 <section id="awards-sec">
     <div class="eyebrow reveal">Recognition</div>
     <p class="awards-q reveal">"Recognition is not the goal.<br>But it is a record."</p>
@@ -2688,7 +2666,7 @@
         <a href="https://instagram.com/irajnicantdothis" target="_blank" class="online-tile">
             <div class="online-platform">Instagram · Internship Vlogs</div>
             <div class="online-handle">@irajnicantdothis</div>
-            <p class="online-desc">Raw, unfiltered internship vlogs from inside The Tribune newsroom. The real experience of becoming a journalist.</p>
+            <p class="online-desc">Raw, unfiltered internship vlogs from inside The Tribune newsroom.</p>
         </a>
     </div>
 </div>
@@ -2698,21 +2676,28 @@
     <div class="contact-inner">
         <div class="eyebrow reveal">Get In Touch</div>
         <h2 class="contact-h reveal">If you've made it here,<br>you already know.<br><em>Let's make something that matters.</em></h2>
-        <p class="contact-sub reveal">Open to journalism collaborations, cinematography projects, photography commissions, speaking engagements, event hosting, content creation, social media strategy, and video editing. I bring precision, presence, and a genuine belief that the work matters.</p>
+        <p class="contact-sub reveal">Open to journalism collaborations, cinematography projects, photography commissions, speaking engagements, event hosting, content creation, social media strategy, and video editing.</p>
         <a href="mailto:1996gungunarora@gmail.com" class="contact-email reveal">1996gungunarora@gmail.com</a>
 
-        <form class="contact-form reveal" onsubmit="handleForm(event)">
+        <!-- 
+            FORM: Using Formspree for real email delivery.
+            SETUP STEPS:
+            1. Go to https://formspree.io and create a free account
+            2. Create a new form — it will give you an endpoint like https://formspree.io/f/XXXXXXXX
+            3. Replace "YOUR_FORMSPREE_ID" below with your actual ID
+        -->
+        <form class="contact-form reveal" id="contactForm">
             <div class="form-group">
-                <label class="form-label">Your Name</label>
-                <input type="text" class="form-input" placeholder="Name" required>
+                <label class="form-label" for="fname">Your Name</label>
+                <input type="text" id="fname" name="name" class="form-input" placeholder="Name" required>
             </div>
             <div class="form-group">
-                <label class="form-label">Your Email</label>
-                <input type="email" class="form-input" placeholder="email@example.com" required>
+                <label class="form-label" for="femail">Your Email</label>
+                <input type="email" id="femail" name="email" class="form-input" placeholder="email@example.com" required>
             </div>
             <div class="form-group full">
-                <label class="form-label">I'm reaching out about</label>
-                <select class="form-select">
+                <label class="form-label" for="fsubject">I'm reaching out about</label>
+                <select id="fsubject" name="subject" class="form-select">
                     <option value="">Select a topic</option>
                     <option>Journalism Collaboration</option>
                     <option>Photography Commission</option>
@@ -2727,11 +2712,17 @@
                 </select>
             </div>
             <div class="form-group full">
-                <label class="form-label">Message</label>
-                <textarea class="form-textarea" placeholder="Tell me about your project..."></textarea>
+                <label class="form-label" for="fmessage">Message</label>
+                <textarea id="fmessage" name="message" class="form-textarea" placeholder="Tell me about your project..." required></textarea>
+            </div>
+            <div class="form-message" id="formSuccess" style="display:none;grid-column:span 2;padding:16px 20px;background:rgba(200,151,58,0.1);border:1px solid rgba(200,151,58,0.3);color:var(--gold);text-align:center;font-size:13px;letter-spacing:1px;">
+                ✓ Message sent! I'll be in touch soon.
+            </div>
+            <div class="form-message" id="formError" style="display:none;grid-column:span 2;padding:16px 20px;background:rgba(107,18,40,0.15);border:1px solid rgba(107,18,40,0.4);color:var(--blush-l);text-align:center;font-size:13px;letter-spacing:1px;">
+                Something went wrong. Please email me directly at 1996gungunarora@gmail.com
             </div>
             <div class="form-submit">
-                <button type="submit" class="btn-silk">Send Message →</button>
+                <button type="submit" class="btn-silk" id="submitBtn">Send Message →</button>
             </div>
         </form>
 
@@ -2746,7 +2737,6 @@
 <!-- ===== FOOTER ===== -->
 <footer>
     <div class="footer-logo-col">
-        <!-- PROFESSIONAL LOGO -->
         <svg viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg" style="height:40px;width:auto;">
             <defs>
                 <linearGradient id="fLogoGrad" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -2761,8 +2751,6 @@
             <text x="0" y="38" font-family="Cormorant Garamond,serif" font-size="9" fill="#f5edd6" letter-spacing="4" opacity="0.7">Gungun Arora</text>
             <line x1="0" y1="43" x2="90" y2="43" stroke="url(#fLogoGrad)" stroke-width="0.4" opacity="0.4"/>
         </svg>
-
-        <!-- TEA WITH GG LOGO -->
         <a href="https://teawithgg.wordpress.com/" target="_blank" class="footer-blog-logo">
             <svg viewBox="0 0 120 44" xmlns="http://www.w3.org/2000/svg" style="height:36px;width:auto;">
                 <defs>
@@ -2771,28 +2759,20 @@
                         <stop offset="100%" stop-color="#c8973a"/>
                     </linearGradient>
                 </defs>
-                <!-- Tea cup body -->
                 <path d="M 8 18 Q 8 36 28 36 Q 48 36 48 18 Z" fill="none" stroke="url(#tggGrad)" stroke-width="1.5"/>
-                <!-- Cup rim -->
                 <line x1="5" y1="18" x2="51" y2="18" stroke="url(#tggGrad)" stroke-width="1.5"/>
-                <!-- Handle -->
                 <path d="M 48 22 Q 58 22 58 28 Q 58 34 48 34" fill="none" stroke="url(#tggGrad)" stroke-width="1.5"/>
-                <!-- Saucer -->
                 <ellipse cx="28" cy="38" rx="22" ry="3" fill="none" stroke="url(#tggGrad)" stroke-width="1" opacity="0.6"/>
-                <!-- GG inside cup -->
                 <text x="18" y="30" font-family="Cormorant Garamond,serif" font-size="11" font-weight="700" fill="url(#tggGrad)">GG</text>
-                <!-- Brand name -->
                 <text x="62" y="22" font-family="Cormorant Garamond,serif" font-size="10" font-weight="600" fill="#eaafc0" letter-spacing="1">Tea With</text>
                 <text x="62" y="34" font-family="Cormorant Garamond,serif" font-size="14" font-weight="700" fill="url(#tggGrad)" letter-spacing="2">GG</text>
             </svg>
         </a>
     </div>
-
     <div class="footer-middle">
         <div class="footer-quote-hindi">यत् भावो — तत् भवति</div>
         <div class="footer-quote-eng">"You become what you believe"</div>
     </div>
-
     <div class="footer-right">
         <div class="footer-links">
             <a href="https://instagram.com/clickswithgg"    target="_blank" class="footer-link">@clickswithgg</a>
@@ -2802,12 +2782,11 @@
             <a href="https://teawithgg.wordpress.com/"      target="_blank" class="footer-link">Tea With GG</a>
         </div>
     </div>
-
     <div class="footer-copy">© 2026 · Gungun Arora · Journalist · Cinematographer · Visual Storyteller · Amritsar</div>
 </footer>
 
 <script>
-// CURSOR
+// ===== CURSOR =====
 const cur   = document.getElementById('cursor');
 const cring = document.getElementById('cring');
 let mx=0, my=0, rx=0, ry=0;
@@ -2833,7 +2812,7 @@ document.querySelectorAll('a,button,[onclick]').forEach(el=>{
     });
 });
 
-// PRELOADER
+// ===== PRELOADER =====
 window.addEventListener('load',()=>{
     setTimeout(()=>{
         document.getElementById('preloader').classList.add('hide');
@@ -2841,12 +2820,12 @@ window.addEventListener('load',()=>{
     },3200);
 });
 
-// NAV
+// ===== NAV =====
 window.addEventListener('scroll',()=>{
     document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50);
 });
 
-// MOBILE MENU
+// ===== MOBILE MENU =====
 function toggleMenu(){
     document.getElementById('burger').classList.toggle('open');
     document.getElementById('mobileMenu').classList.toggle('open');
@@ -2856,31 +2835,31 @@ function closeMenu(){
     document.getElementById('mobileMenu').classList.remove('open');
 }
 
-// EXPAND SECTIONS
+// ===== EXPAND SECTIONS =====
 function toggleExp(header){
-    const body=header.nextElementSibling;
-    const open=body.classList.contains('open');
-    header.classList.toggle('active',!open);
-    body.classList.toggle('open',!open);
+    const body = header.nextElementSibling;
+    const open = body.classList.contains('open');
+    header.classList.toggle('active', !open);
+    body.classList.toggle('open', !open);
 }
 
-// TIMELINE EXPAND
+// ===== TIMELINE EXPAND =====
 function toggleTL(btn){
-    const ex=btn.nextElementSibling;
+    const ex = btn.nextElementSibling;
     ex.classList.toggle('open');
     btn.textContent = ex.classList.contains('open') ? 'Read less' : 'Read more';
 }
 
-// HERO BG SLIDESHOW
+// ===== HERO BG SLIDESHOW =====
 const heroBgSlides = document.querySelectorAll('.hero-bg-slide');
 let heroBgCur = 0;
 setInterval(()=>{
     heroBgSlides[heroBgCur].classList.remove('active');
-    heroBgCur=(heroBgCur+1)%heroBgSlides.length;
+    heroBgCur = (heroBgCur+1) % heroBgSlides.length;
     heroBgSlides[heroBgCur].classList.add('active');
-},6000);
+}, 6000);
 
-// AUTO GALLERY
+// ===== AUTO GALLERY =====
 const agSlides = document.querySelectorAll('.ag-slide');
 const agTotal  = agSlides.length;
 let agCur = 0;
@@ -2888,80 +2867,124 @@ let agTimer;
 
 function agGo(n){
     agSlides[agCur].classList.remove('active');
-    agCur=(n+agTotal)%agTotal;
+    agCur = (n + agTotal) % agTotal;
     agSlides[agCur].classList.add('active');
-    const c=document.getElementById('agCounter');
-    if(c) c.textContent=String(agCur+1).padStart(2,'0');
-    // reset progress bar
-    const bar=document.getElementById('agBar');
-    if(bar){ bar.style.transition='none'; bar.style.width='0%'; setTimeout(()=>{ bar.style.transition='width 5s linear'; bar.style.width='100%'; },50); }
+    const c = document.getElementById('agCounter');
+    if(c) c.textContent = String(agCur+1).padStart(2,'0');
+    const bar = document.getElementById('agBar');
+    if(bar){
+        bar.style.transition = 'none';
+        bar.style.width = '0%';
+        setTimeout(()=>{ bar.style.transition = 'width 5s linear'; bar.style.width = '100%'; }, 50);
+    }
 }
-function agNav(d){ clearInterval(agTimer); agGo(agCur+d); agTimer=setInterval(()=>agGo(agCur+1),5500); }
+function agNav(d){ clearInterval(agTimer); agGo(agCur+d); agTimer = setInterval(()=>agGo(agCur+1), 5500); }
 
-// start progress bar
-const bar=document.getElementById('agBar');
-if(bar){ setTimeout(()=>{ bar.style.transition='width 5s linear'; bar.style.width='100%'; },100); }
-agTimer=setInterval(()=>agGo(agCur+1),5500);
+const bar = document.getElementById('agBar');
+if(bar){ setTimeout(()=>{ bar.style.transition='width 5s linear'; bar.style.width='100%'; }, 100); }
+agTimer = setInterval(()=>agGo(agCur+1), 5500);
 
-// SCROLL REVEAL
-const revObs=new IntersectionObserver(entries=>{
+// ===== SCROLL REVEAL =====
+const revObs = new IntersectionObserver(entries=>{
     entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
-},{threshold:0.07});
+}, {threshold:0.07});
 document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
 
-// TIMELINE CHAPTERS
-const tlObs=new IntersectionObserver(entries=>{
+// ===== TIMELINE CHAPTERS =====
+const tlObs = new IntersectionObserver(entries=>{
     entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
-},{threshold:0.2});
+}, {threshold:0.15});
 document.querySelectorAll('.tl-chapter').forEach(el=>tlObs.observe(el));
 
-// COUNTER ANIMATION
+// ===== COUNTER ANIMATION =====
 function animateCounter(el){
-    const target=parseInt(el.dataset.target);
-    const suffix=el.dataset.target.includes('+') ? '+' : '';
-    let current=0;
-    const step=target/60;
-    const timer=setInterval(()=>{
-        current+=step;
-        if(current>=target){ current=target; clearInterval(timer); }
-        el.textContent=Math.floor(current)+(suffix||'');
-    },20);
+    const target = parseInt(el.dataset.target);
+    let current = 0;
+    const step = target / 60;
+    const timer = setInterval(()=>{
+        current += step;
+        if(current >= target){ current = target; clearInterval(timer); }
+        el.textContent = Math.floor(current);
+    }, 20);
 }
-const counterObs=new IntersectionObserver(entries=>{
+const counterObs = new IntersectionObserver(entries=>{
     entries.forEach(e=>{
         if(e.isIntersecting){
             e.target.querySelectorAll('[data-target]').forEach(animateCounter);
             counterObs.unobserve(e.target);
         }
     });
-},{threshold:0.5});
+}, {threshold:0.5});
 document.querySelectorAll('.about-stats').forEach(el=>counterObs.observe(el));
 
-// LANGUAGE BARS
-const barObs=new IntersectionObserver(entries=>{
+// ===== LANGUAGE BARS =====
+const barObs = new IntersectionObserver(entries=>{
     entries.forEach(e=>{
         if(e.isIntersecting){
             e.target.querySelectorAll('.lang-bar').forEach(b=>b.classList.add('visible'));
             barObs.unobserve(e.target);
         }
     });
-},{threshold:0.4});
+}, {threshold:0.4});
 document.querySelectorAll('#lang-tools').forEach(el=>barObs.observe(el));
 
-// FORM
-function handleForm(e){
-    e.preventDefault();
-    const btn=e.target.querySelector('button[type=submit]');
-    btn.textContent='Message Sent ✓';
-    btn.style.background='linear-gradient(135deg,#4a1560,#6b1228)';
-    btn.style.color='#f5edd6';
-    setTimeout(()=>{ btn.textContent='Send Message →'; btn.style.background=''; btn.style.color=''; },3000);
-}
+// ===== CONTACT FORM — FORMSPREE =====
+// IMPORTANT: Replace YOUR_FORMSPREE_ID with your actual Formspree form ID
+// Get one free at https://formspree.io
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORMSPREE_ID';
 
-// KEYBOARD
-document.addEventListener('keydown',e=>{
-    if(e.key==='ArrowLeft')  agNav(-1);
-    if(e.key==='ArrowRight') agNav(1);
+document.getElementById('contactForm').addEventListener('submit', async function(e){
+    e.preventDefault();
+
+    const btn      = document.getElementById('submitBtn');
+    const success  = document.getElementById('formSuccess');
+    const error    = document.getElementById('formError');
+
+    // Hide previous messages
+    success.style.display = 'none';
+    error.style.display   = 'none';
+
+    // Loading state
+    btn.textContent = 'Sending...';
+    btn.disabled    = true;
+
+    const formData = {
+        name:    document.getElementById('fname').value,
+        email:   document.getElementById('femail').value,
+        subject: document.getElementById('fsubject').value,
+        message: document.getElementById('fmessage').value,
+    };
+
+    try {
+        const res = await fetch(FORMSPREE_ENDPOINT, {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body:    JSON.stringify(formData)
+        });
+
+        if(res.ok){
+            success.style.display = 'block';
+            this.reset();
+            btn.textContent = 'Message Sent ✓';
+            setTimeout(()=>{
+                btn.textContent = 'Send Message →';
+                btn.disabled    = false;
+                success.style.display = 'none';
+            }, 5000);
+        } else {
+            throw new Error('Form submission failed');
+        }
+    } catch(err){
+        error.style.display = 'block';
+        btn.textContent     = 'Send Message →';
+        btn.disabled        = false;
+    }
+});
+
+// ===== KEYBOARD NAV =====
+document.addEventListener('keydown', e=>{
+    if(e.key === 'ArrowLeft')  agNav(-1);
+    if(e.key === 'ArrowRight') agNav(1);
 });
 </script>
 </body>
