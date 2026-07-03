@@ -1818,13 +1818,34 @@ document.querySelectorAll('a,button,[onclick]').forEach(el=>{
 });
 
 /* ===== PRELOADER ===== */
-window.addEventListener('load',()=>{
-    setTimeout(()=>{
-        document.getElementById('preloader').classList.add('hide');
-        setTimeout(()=>{ document.getElementById('preloader').style.display='none'; },1300);
-    },3200);
-});
+function hidePreloader() {
+    const pre = document.getElementById('preloader');
+    if (!pre) return;
 
+    setTimeout(() => {
+        pre.classList.add('hide');
+        setTimeout(() => {
+            pre.style.display = 'none';
+        }, 1300);
+    }, 3200);
+}
+
+if (document.readyState === 'complete') {
+    hidePreloader();
+} else {
+    window.addEventListener('load', hidePreloader);
+}
+
+/* failsafe */
+setTimeout(() => {
+    const pre = document.getElementById('preloader');
+    if (pre && !pre.classList.contains('hide')) {
+        pre.classList.add('hide');
+        setTimeout(() => {
+            pre.style.display = 'none';
+        }, 1300);
+    }
+}, 6000);
 /* ===== NAV SCROLL ===== */
 window.addEventListener('scroll',()=>{
     document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50);
