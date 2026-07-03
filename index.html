@@ -2096,7 +2096,10 @@ const videoObs = new IntersectionObserver(entries => {
 document.querySelectorAll('.bts-cell').forEach(cell => videoObs.observe(cell));
 
 /* ===== CONTACT FORM ===== */
-const FORMSPREE_ENDPOINT = https://formspree.io/f/xwvdnrow
+/* ⚠️  FIX 4 — Replace YOUR_FORMSPREE_ID below with your actual ID from formspree.io
+   Example: https://formspree.io/f/xpznkwab
+   Sign up free at formspree.io, create a form, copy the ID */
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORMSPREE_ID';
 
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
