@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Testimonials — Gungun Arora</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+    --bg:#0d0410; --bg2:#110618; --bg3:#160820;
+    --gold:#c8973a; --gold-l:#e0b04a;
+    --blush:#cc7d96; --blush-l:#eaafc0;
+    --parchment:#f5edd6; --text:#d0b8d8; --text-dim:#806878;
+    --silver-l:#dcdcf0; --wine-l:#8b1a38;
+    --forest:#1a4a2e; --forest-l:#2d6b42; --forest-d:#0f2e1a;
+    --amethyst-d:#2d0a3d;
+}
+html { scroll-behavior:smooth; }
+body {
+    background:var(--bg); color:var(--text);
+    font-family:'Montserrat',sans-serif; font-weight:300;
+    min-height:100vh;
+}
+::-webkit-scrollbar { width:3px; }
+::-webkit-scrollbar-track { background:var(--bg); }
+::-webkit-scrollbar-thumb { background:linear-gradient(var(--gold),var(--blush)); }
+
+.page-header {
+    padding:80px 60px 60px;
+    background:linear-gradient(160deg,var(--amethyst-d) 0%,var(--bg) 60%,var(--forest-d) 100%);
+    border-bottom:1px solid rgba(200,151,58,0.1);
+    text-align:center;
+}
+.back-link {
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:11px; letter-spacing:3px; text-transform:uppercase;
+    color:var(--gold); text-decoration:none; margin-bottom:40px;
+    padding:10px 20px; border:1px solid rgba(200,151,58,0.2);
+    border-radius:2px; transition:all 0.3s;
+}
+.back-link:hover { background:rgba(200,151,58,0.08); }
+.page-eyebrow {
+    font-size:10px; letter-spacing:5px; text-transform:uppercase;
+    color:var(--blush); margin-bottom:16px;
+}
+.page-title {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(40px,6vw,80px); font-weight:400;
+    color:var(--parchment); line-height:1.1; margin-bottom:16px;
+}
+.page-title em { color:var(--gold); font-style:italic; }
+.page-sub { font-size:14px; opacity:0.5; max-width:500px; margin:0 auto; line-height:1.8; }
+
+.loading-state {
+    text-align:center; padding:80px 20px;
+    font-size:13px; letter-spacing:3px; text-transform:uppercase;
+    color:var(--text-dim); opacity:0.5; grid-column:1/-1;
+}
+.loading-dot { display:inline-block; animation:ldot 1.4s ease infinite; }
+.loading-dot:nth-child(2) { animation-delay:0.2s; }
+.loading-dot:nth-child(3) { animation-delay:0.4s; }
+@keyframes ldot { 0%,80%,100%{opacity:0.2} 40%{opacity:1} }
+
+.testimonials-page-wrap {
+    max-width:1200px; margin:0 auto; padding:80px 60px;
+}
+.t-count {
+    font-size:11px; letter-spacing:3px; text-transform:uppercase;
+    color:var(--text-dim); margin-bottom:48px; text-align:center;
+}
+.testimonials-all-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+    gap:24px;
+}
+.t-page-card {
+    padding:40px 36px;
+    background:rgba(26,74,46,0.06);
+    border:1px solid rgba(26,74,46,0.15);
+    border-left:3px solid var(--forest-l);
+    position:relative;
+    transition:all 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.t-page-card:hover {
+    background:rgba(26,74,46,0.12);
+    transform:translateY(-4px);
+    box-shadow:0 20px 60px rgba(10,5,16,0.4);
+}
+.t-page-card::before {
+    content:'"'; position:absolute; top:16px; left:20px;
+    font-family:'Cormorant Garamond',serif; font-size:60px;
+    color:var(--forest-l); opacity:0.1; line-height:1;
+}
+.t-page-text {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(16px,1.8vw,20px); font-style:italic;
+    color:var(--silver-l); line-height:1.75;
+    margin-bottom:28px; position:relative; z-index:1;
+}
+.t-page-author { display:flex; align-items:center; gap:14px; }
+.t-page-avatar {
+    width:48px; height:48px; border-radius:50%;
+    object-fit:cover; border:2px solid rgba(26,74,46,0.3); flex-shrink:0;
+}
+.t-page-avatar-placeholder {
+    width:48px; height:48px; border-radius:50%;
+    background:linear-gradient(135deg,var(--forest-l),var(--gold));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Cormorant Garamond',serif; font-size:20px;
+    font-weight:700; color:var(--bg); flex-shrink:0;
+}
+.t-page-name {
+    font-family:'Cormorant Garamond',serif; font-size:18px;
+    color:var(--gold); font-weight:600;
+}
+.t-page-role { font-size:11px; letter-spacing:1px; color:var(--text-dim); margin-top:3px; }
+.t-page-date { font-size:10px; color:var(--text-dim); opacity:0.4; margin-top:3px; }
+
+.empty-state { text-align:center; padding:80px 20px; grid-column:1/-1; }
+.empty-state-title {
+    font-family:'Cormorant Garamond',serif; font-size:32px;
+    color:var(--parchment); margin-bottom:12px;
+}
+.empty-state-sub { font-size:14px; opacity:0.4; line-height:1.8; }
+
+.submit-cta {
+    text-align:center; padding:60px;
+    background:var(--bg2);
+    border-top:1px solid rgba(200,151,58,0.08);
+}
+.submit-cta-title {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(24px,3vw,40px);
+    color:var(--parchment); margin-bottom:12px;
+}
+.submit-cta-title em { color:var(--gold); font-style:italic; }
+.submit-cta-sub { font-size:14px; opacity:0.5; margin-bottom:28px; }
+.btn-silk {
+    padding:15px 40px;
+    background:linear-gradient(135deg,#9a7228,#c8973a,#e0b04a);
+    color:var(--bg); text-decoration:none; font-size:10px;
+    letter-spacing:3px; text-transform:uppercase; font-weight:500;
+    border-radius:2px; transition:all 0.4s; display:inline-block;
+}
+.btn-silk:hover { transform:translateY(-3px); box-shadow:0 16px 40px rgba(200,151,58,0.2); }
+
+.page-footer {
+    text-align:center; padding:40px 60px;
+    border-top:1px solid rgba(200,151,58,0.08);
+    font-size:10px; opacity:0.2; letter-spacing:1px;
+}
+
+@media(max-width:768px){
+    .page-header { padding:60px 24px 40px; }
+    .testimonials-page-wrap { padding:48px 24px; }
+    .testimonials-all-grid { grid-template-columns:1fr; }
+    .submit-cta { padding:48px 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+    <a href="index.html" class="back-link">← Back to Portfolio</a>
+    <div class="page-eyebrow">Testimonials</div>
+    <h1 class="page-title">What people say about<br><em>working with me.</em></h1>
+    <p class="page-sub">Real words from real people — colleagues, mentors, collaborators, and those who've seen the work firsthand.</p>
+</div>
+
+<div class="testimonials-page-wrap">
+    <div class="t-count" id="tAllCount"></div>
+    <div class="testimonials-all-grid" id="tAllGrid">
+        <div class="loading-state">
+            Loading
+            <span class="loading-dot">.</span>
+            <span class="loading-dot">.</span>
+            <span class="loading-dot">.</span>
+        </div>
+    </div>
+</div>
+
+<div class="submit-cta">
+    <div class="submit-cta-title">Worked with me?<br><em>Add your voice.</em></div>
+    <p class="submit-cta-sub">Go back to the main portfolio to submit your testimonial.</p>
+    <a href="index.html#testimonials" class="btn-silk">Submit a Testimonial →</a>
+</div>
+
+<div class="page-footer">
+    © 2026 · Gungun Arora · Journalist · Cinematographer · Visual Storyteller
+</div>
+
+<script>
+const TESTIMONIALS_API = 'https://script.google.com/macros/s/AKfycbwaykl4zUuPMdOlwd6UEUTZYjVkermEkPV_W4c4VFoGeGhnw6HyT2KaMMyl1Dj5xdZm/exec';
+
+function escapeHTML(str) {
+    const div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+}
+
+async function loadAllTestimonials() {
+    const grid    = document.getElementById('tAllGrid');
+    const countEl = document.getElementById('tAllCount');
+
+    try {
+        const res  = await fetch(TESTIMONIALS_API);
+        const data = await res.json();
+
+        if (!data.success || !data.testimonials || data.testimonials.length === 0) {
+            grid.innerHTML =
+                '<div class="empty-state">' +
+                    '<div class="empty-state-title">No testimonials yet</div>' +
+                    '<p class="empty-state-sub">Be the first to share your experience working with Gungun.</p>' +
+                '</div>';
+            return;
+        }
+
+        const testimonials = data.testimonials;
+        const n = testimonials.length;
+        if (countEl) {
+            countEl.textContent = n + ' testimonial' + (n !== 1 ? 's' : '');
+        }
+
+        grid.innerHTML = '';
+
+        testimonials.forEach(t => {
+            let avatarHTML;
+            if (t.photo && t.photo.length > 10) {
+                avatarHTML = '<img src="' + t.photo + '" alt="' + escapeHTML(t.name) + '" class="t-page-avatar">';
+            } else {
+                const initial = t.name ? t.name.charAt(0).toUpperCase() : '?';
+                avatarHTML = '<div class="t-page-avatar-placeholder">' + initial + '</div>';
+            }
+
+            const dateStr = t.date
+                ? new Date(t.date).toLocaleDateString('en-IN', {
+                    year:'numeric', month:'short', day:'numeric'
+                  })
+                : '';
+
+            const roleOrg = [t.role, t.org].filter(Boolean).join(' · ');
+
+            const card = document.createElement('div');
+            card.className = 't-page-card';
+            card.innerHTML =
+                '<p class="t-page-text">' + escapeHTML(t.message) + '</p>' +
+                '<div class="t-page-author">' +
+                    avatarHTML +
+                    '<div>' +
+                        '<div class="t-page-name">' + escapeHTML(t.name) + '</div>' +
+                        (roleOrg ? '<div class="t-page-role">' + escapeHTML(roleOrg) + '</div>' : '') +
+                        (dateStr ? '<div class="t-page-date">' + dateStr + '</div>' : '') +
+                    '</div>' +
+                '</div>';
+
+            grid.appendChild(card);
+        });
+
+    } catch(err) {
+        grid.innerHTML =
+            '<div class="empty-state">' +
+                '<div class="empty-state-title">Could not load testimonials</div>' +
+                '<p class="empty-state-sub">Please try refreshing the page.</p>' +
+            '</div>';
+    }
+}
+
+loadAllTestimonials();
+</script>
+</body>
+</html>
